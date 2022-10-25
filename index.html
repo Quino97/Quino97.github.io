@@ -1,1 +1,138 @@
-"Hello World" 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  <title>home</title>
+  <link href="cover.css" rel="stylesheet">
+  <link href="style.css" rel="stylesheet">
+</head>
+<script src='script.js'></script>
+
+<nav class=" fixed-top navbar navbar-expand-lg navbar-light nav-top">
+  <div class="container-fluid">
+    <div class="item text-left">
+      <a class="navbar-nav" href="#">
+        <div class = "dropdown">
+          <a class = "navbar-toggler-icon" href="#" data-toggle="dropdown">  
+          </a>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" href="home.html">home</a>
+            <a class="dropdown-item disabled" href="about.html" tabindex="-1" aria-disabled="true">about</a>
+            <a class="dropdown-item" href="gallery.html">gallery</a>
+            <a class="dropdown-item" href="archive.html">archive</a>
+            <a class="dropdown-item" href="personalcollection.html">personal collection</a>
+          </div>
+        </div>
+        
+      </a>
+      
+    </div>
+    <div class="item text-center">
+      <!-- Brand -->
+      <a class="navbar-brand " href="home.html">
+        <span class ="mb-0 h2">
+          typememo
+        </span>
+        
+      </a>
+    </div>
+    <div class="item text-right">
+      <!-- Brand -->
+      <a class="navbar-nav float-right" href="loginsignup.html">
+        <button type="button" class="btn btn-outline-dark float-right d-none d-lg-block loginbtn">log in/sign up</button> <!--This is the log in and sign up button-->
+      </a>
+    </div>
+  </div>
+</nav>
+
+<body class="text-center">
+
+  <div class="cover-container d-flex h-100 p-3 mx-auto flex-column">
+    <header class="masthead mb-auto">
+      
+    </header>
+    <div class="jumbotron text-center">
+      <div class="input-group">
+        <div class="custom-file">
+          <input type="file" class="custom-file-input" id="inputGroupFile02">
+          <label class="custom-file-label" for="inputGroupFile02">Choose file</label>
+        </div>
+        <div class="input-group-append">
+          <span class="input-group-text" id="">Upload</span>
+        </div>
+      </div>
+      <a class="btn btn-outline-dark dropdown-toggle mt-3 ddt" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        category
+        
+      </a>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+        <a class="dropdown-item" href="#">digital art</a>
+        <a class="dropdown-item" href="#">photography</a>
+        <a class="dropdown-item" href="#">art prints</a>
+        <a class="dropdown-item" href="#">fine art</a>
+        <a class="dropdown-item" href="#">fashion</a>
+        <a class="dropdown-item" href="#">other</a>
+      </div>
+      <div class = "button mt-3">
+        <button type="button" class="btn btn-outline-dark float-none bt3">mint</button> 
+      </div>
+      
+    </div>
+    <main role="main" class="inner cover jcust">
+      <div class="jumbotron">
+        <h1 class="cover-heading">revolutionise the sky</h1>
+        <p class="lead">leveraging digital possibilities, into to real world advancements.
+          the creation of the digital-physical presence.
+          providing value with no negative impact on the world</p>     
+      </div>
+      
+    </main>
+
+    <footer class="mastfoot mt-auto">
+      <div class="inner">
+        <!--<p>Cover template for <a href="https://getbootstrap.com/">Bootstrap</a>, by <a href="https://twitter.com/mdo">@mdo</a>.</p>--> 
+      </div>
+    </footer>
+  </div>
+<nav class="navbar fixed-bottom navbar-expand-lg navbar-light nav-bot">
+  <a class="navbar-brand" href="home.html">typememo</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item active">
+        <a class="nav-link" href="about.html">about<span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="gallery.html">gallery</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="archive.html">archive</a>
+      </li>
+      <li class="nav-item">
+        <div class="btn-group dropup">
+          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            more
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+            <a class="dropdown-item" href="mint.html">mint</a>
+            <a class="dropdown-item" href="buy.html">buy</a>
+            <a class="dropdown-item" href="sell.html">sell</a>
+            <a class="dropdown-item" href="error.html">error</a>
+          </div>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link disabled" href="personalcollection.html">personal collection</a>
+      </li>
+    </ul>
+  
+</nav>
+</html>

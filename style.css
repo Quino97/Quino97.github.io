@@ -1,0 +1,126 @@
+@font-face {
+    font-family: "NugoA";
+    src: url("https://github.com/Quino97/Quino97.github.io/blob/main/NugoSans.ttf") format('truetype');
+  }
+  body {
+      background: #fff;
+      background-image: url("https://github.com/Quino97/Quino97.github.io/blob/main/background.jpg");
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: cover;
+      color: #969696;
+      padding: 80px;
+      font-family: "NugoA";
+    }
+    [role= menuitem] {
+      color: #000;
+    }
+    #dropdownMenu2 {
+      background-color: transparent;
+      color:#969696;
+      border-color: transparent;
+    }
+  
+  #selimg {
+    height: 600px;
+    
+  }
+  
+  
+  .nav-top {
+    background-color: #b8fce1;
+  }
+  
+  .nav-bot {
+    background-color: #fed6d7;
+  }
+  img {
+    border: 5px;
+    border-color: #fef5f5;
+    border-style: solid;
+  }
+  
+  .galjumbo {
+    background-color: #b8fce1 !important;
+    background-size: cover;
+    height: 250px;
+    border: 0px !important;
+  }
+  .arcjumbo {
+    background-color: transparent !important;
+    background-size: cover;
+    height: 200px;
+    border: 0px !important;
+  }
+  
+  
+  .lcolour {
+    color: #ad592b;
+  }
+  
+  .lcolour:hover {
+    color: #fac082;
+  }
+  
+  .jumbotron {
+    background-color: #fef5f5;
+    border: 5px;
+    border-color: #fef5f5;
+    border-style: solid;
+  }
+  
+  .btgal {
+    background-color: #969696;
+    background-color: #969696;
+    border-color: #969696;
+    color: #fef5f5;
+  }
+  
+  .loginbtn {
+    background-color: #b8fce1;
+    border-color: #b8fce1;
+  }
+  
+  .loginbtn:hover{
+    background-color: #969696;
+    border-color: #969696;
+    color: #fef5f5;
+  }
+  
+  .loginbtn2 {
+    background-color: #fef5f5;
+    border-color: #fef5f5;
+    color: #969696;
+  }
+  .cardarc {
+    background-color: transparent;
+    border-color: transparent;
+  }
+  
+  
+  .ddt {
+    background-color: #b8fce1;
+    color: #969696;
+    font-size: 20px;
+    padding: 5px 10px;
+    border-radius: 10px;
+    border-color: transparent;
+    min-width: 200px;
+  }
+  
+  .bt3 {
+    background-color: #b8fce1;
+    padding: 5px 10px;
+    border-radius: 10px;
+    font-size: 20px;
+    color: #969696;
+    border-color: transparent;
+    min-width: 200px;
+  }
+  
+  .item {
+    flex-grow: 1;
+     
+    width: 3rem;
+    padding: 0rem 0.5rem;
+  }
