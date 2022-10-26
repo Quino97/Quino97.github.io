@@ -1,16 +1,16 @@
 @font-face {
     font-family: "Quicksand";
-    src: url("Quicksand.ttf") format('truetype');
+    src: url("Raleway.ttf") format('truetype');
   }
   body {
       background: #fff;
-      background-image: url("background.jpg");
+      background-image: url("background3.png");
       background-repeat: no-repeat;
       background-position: center;
       background-size: cover;
       color: #969696;
       padding: 80px;
-      font-family: "NugoA";
+      font-family: "Quicksand";
     }
     [role= menuitem] {
       color: #000;
@@ -26,17 +26,22 @@
     
   }
   
-  
+  #navbarlogo {
+    padding: 0px;
+    background-color: #ffffff;
+    border: 0px;
+  }
+
   .nav-top {
-    background-color: #b8fce1;
+    background-color: #ffffff;
   }
   
   .nav-bot {
-    background-color: #fed6d7;
+    background-color: #29ABE2;
   }
   img {
-    border: 5px;
-    border-color: #fef5f5;
+    border: 0px;
+    border-color: #29ABE2;
     border-style: solid;
   }
   
@@ -63,10 +68,12 @@
   }
   
   .jumbotron {
-    background-color: #fef5f5;
-    border: 5px;
+    align-items: center;
+    justify-content: center;
+    background-color: #f8f8f8;
+    /* border: 5px;
     border-color: #fef5f5;
-    border-style: solid;
+    border-style: solid; */
   }
   
   .btgal {
@@ -75,23 +82,7 @@
     border-color: #969696;
     color: #fef5f5;
   }
-  
-  .loginbtn {
-    background-color: #b8fce1;
-    border-color: #b8fce1;
-  }
-  
-  .loginbtn:hover{
-    background-color: #969696;
-    border-color: #969696;
-    color: #fef5f5;
-  }
-  
-  .loginbtn2 {
-    background-color: #fef5f5;
-    border-color: #fef5f5;
-    color: #969696;
-  }
+ 
   .cardarc {
     background-color: transparent;
     border-color: transparent;

@@ -3,7 +3,7 @@
  */
  @font-face {
     font-family: "Quicksand";
-    src: url("Quicksand.ttf") format('truetype');
+    src: url("Raleway.ttf") format('truetype');
   }
   /* Links */
   a,
@@ -30,7 +30,7 @@
   html,
   body {
     height: 100%;
-    background-image: url("background.jpg");
+    background-image: url("background3.png");
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -44,7 +44,7 @@
     -webkit-box-pack: center;
     justify-content: center;
     color: #969696;
-    font-family: NugoA;
+    font-family: Quicksand;
   }
   
   .cover-container {
@@ -64,11 +64,11 @@
   }
   
   .nav-top {
-    background-color: #b8fce1;
+    background-color: #ffffff;
   }
   
   .nav-bot {
-    background-color: #fed6d7;
+    background-color: #29ABE2;
   }
   
   .nav-masthead .nav-link {
