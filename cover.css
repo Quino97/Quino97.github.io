@@ -2,8 +2,8 @@
  * Globals
  */
  @font-face {
-    font-family: "Quicksand";
-    src: url("Raleway.ttf") format('truetype');
+    font-family: "Raleway";
+    src: url("assets/fonts/Raleway.ttf") format('truetype');
   }
   /* Links */
   a,
@@ -16,10 +16,10 @@
   .btn-secondary,
   .btn-secondary:hover,
   .btn-secondary:focus {
-    color: #333;
+    color: #000;
     text-shadow: none; /* Prevent inheritance from `body` */
-    background-color: #f8f9fa;
-    border: .05rem solid #f8f9fa;
+    background-color: #fff;
+    border: .05rem solid #969696;
   }
   
   
@@ -27,10 +27,9 @@
    * Base structure
    */
   
-  html,
-  body {
+  html {
     height: 100%;
-    background-image: url("background3.png");
+    background-image: url("assets/images/background3.png");
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -44,14 +43,13 @@
     -webkit-box-pack: center;
     justify-content: center;
     color: #969696;
-    font-family: Quicksand;
+    font-family: "Raleway";
   }
   
   .cover-container {
     max-width: 1000px;
   }
-  
-  
+    
   /*
    * Header
    */
@@ -101,7 +99,31 @@
       float: right;
     }
   }
-  
+
+  @media (max-width: 768px){
+    #profilepicture{
+        max-height: 380px;
+    }
+    #mainhead {
+      font-size: x-large;
+      margin: 8px;
+      }
+    #mainpara {
+      font-size: large;
+    }
+  }
+    @media (min-width: 768px) {
+      #profilepicture{
+        max-height: 400px;
+    }
+    #mainhead {
+      font-size: xx-large;
+      
+    }
+    #mainpara {
+      font-size: large;
+    }
+  }
   
   /*
    * Cover

@@ -1,35 +1,46 @@
 @font-face {
-    font-family: "Quicksand";
-    src: url("Raleway.ttf") format('truetype');
+    font-family: "Raleway";
+    src: url("assets/fonts/Raleway.ttf") format('truetype');
   }
   body {
       background: #fff;
-      background-image: url("background3.png");
+      height: 100%;
+      background-image: url("assets/images/background3.png");
       background-repeat: no-repeat;
       background-position: center;
       background-size: cover;
       color: #969696;
-      padding: 80px;
-      font-family: "Quicksand";
+      padding: 40px;
+      font-family: "Raleway";
     }
     [role= menuitem] {
       color: #000;
     }
     #dropdownMenu2 {
       background-color: transparent;
-      color:#969696;
+      color: #000;
       border-color: transparent;
+      
     }
   
   #selimg {
     height: 600px;
-    
-  }
+    }
   
+
   #navbarlogo {
     padding: 0px;
     background-color: #ffffff;
     border: 0px;
+  }
+
+  .navbar a {
+    float: left;
+    text-align: center;
+    padding: 6px;
+    color: #fff;
+    text-decoration: none;
+    font-size: 20px;
   }
 
   .nav-top {
@@ -40,24 +51,18 @@
     background-color: #29ABE2;
   }
   img {
-    border: 0px;
+    border: 5px;
     border-color: #29ABE2;
     border-style: solid;
+    margin: auto;
   }
-  
-  .galjumbo {
-    background-color: #b8fce1 !important;
-    background-size: cover;
-    height: 250px;
-    border: 0px !important;
-  }
-  .arcjumbo {
-    background-color: transparent !important;
-    background-size: cover;
-    height: 200px;
-    border: 0px !important;
-  }
-  
+ 
+  #profilepicture {
+    display: block;
+    margin: auto;
+    padding: 2px;
+    }
+ 
   
   .lcolour {
     color: #ad592b;
@@ -71,6 +76,8 @@
     align-items: center;
     justify-content: center;
     background-color: #f8f8f8;
+    max-height: 90%;
+    margin: auto;
     /* border: 5px;
     border-color: #fef5f5;
     border-style: solid; */
@@ -99,16 +106,7 @@
     min-width: 200px;
   }
   
-  .bt3 {
-    background-color: #b8fce1;
-    padding: 5px 10px;
-    border-radius: 10px;
-    font-size: 20px;
-    color: #969696;
-    border-color: transparent;
-    min-width: 200px;
-  }
-  
+    
   .item {
     flex-grow: 1;
      
