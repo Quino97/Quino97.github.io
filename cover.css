@@ -28,7 +28,7 @@
    */
   
   html {
-    height: 100%;
+    min-height: 100%;
     background-image: url("assets/images/background3.png");
     background-repeat: no-repeat;
     background-position: center;
@@ -44,6 +44,7 @@
     justify-content: center;
     color: #969696;
     font-family: "Raleway";
+    min-height: 100%;
   }
   
   .cover-container {
