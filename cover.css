@@ -111,6 +111,9 @@
     #mainpara {
       font-size: large;
     }
+    .jumbotron {
+      min-height: 100vh;
+    }
   }
     @media (min-width: 768px) {
       #profilepicture{
