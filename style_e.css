@@ -166,6 +166,28 @@ h6,
   visibility: visible;
 }
 
+.testimonial-wrap {
+  padding: 20px;
+  background: #eceff2;
+}
+
+.testimonial-wrap .testimonial {
+  text-align: center;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.testimonial-wrap .testimonial img {
+  
+  width: 300px;
+  margin: 0 auto 10px auto;
+}
+
+.testimonial-wrap .testimonial blockquote p {
+  font-size: 20px;
+}
+
+
 .h3 {
   font-size: 20px;
 }
