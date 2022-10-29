@@ -3,7 +3,7 @@
     src: url("assets/fonts/Raleway.ttf") format('truetype');
   }
   body {
-      background: #fff;
+      background: transparent;
       height: 100%;
       background-image: url("assets/images/background3.png");
       background-repeat: no-repeat;
@@ -27,7 +27,10 @@
     height: 600px;
     }
   
-
+  #engrow {
+    padding: 50px;
+  }
+  
   #navbarlogo {
     padding: 0px;
     background-color: #ffffff;
@@ -38,7 +41,7 @@
     float: left;
     text-align: center;
     padding: 6px;
-    color: #fff;
+    color: #F9FEFF;
     text-decoration: none;
     font-size: 20px;
   }
@@ -49,7 +52,13 @@
   
   .nav-bot {
     background-color: #29ABE2;
+    
   }
+
+  #botnav {
+    color: #F9FEFF;
+  }
+
   img {
     border: 5px;
     border-color: #29ABE2;
@@ -76,37 +85,19 @@
     align-items: center;
     justify-content: center;
     background-color: #f8f8f8;
-    max-height: 90%;
+    max-height: 100%;
     margin: auto;
     /* border: 5px;
     border-color: #fef5f5;
     border-style: solid; */
   }
   
-  .btgal {
-    background-color: #969696;
-    background-color: #969696;
-    border-color: #969696;
-    color: #fef5f5;
-  }
- 
   .cardarc {
     background-color: transparent;
     border-color: transparent;
   }
   
-  
-  .ddt {
-    background-color: #b8fce1;
-    color: #969696;
-    font-size: 20px;
-    padding: 5px 10px;
-    border-radius: 10px;
-    border-color: transparent;
-    min-width: 200px;
-  }
-  
-    
+
   .item {
     flex-grow: 1;
      
