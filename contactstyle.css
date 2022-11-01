@@ -44,7 +44,7 @@ h6 {
   z-index: 997;
   transition: all 0.5s;
   height: 80px;
-  background: rgba(25, 28, 31, 0.8);
+  background: transparent;
 }
 
 #header.header-transparent {
@@ -53,7 +53,7 @@ h6 {
 
 #header.header-scrolled {
   height: 60px;
-  background: rgba(25, 28, 31, 0.8);
+  background: transparent;
 }
 
 
@@ -63,14 +63,13 @@ h6 {
 #hero {
   width: 100%;
   height: 100vh;
-  background: url("../img/hero-bg.jpg") top right;
-  background-size: cover;
+  
   position: relative;
 }
 
 #hero:before {
   content: "";
-  background: rgba(0, 0, 0, 0.65);
+  background: transparent;
   position: absolute;
   bottom: 0;
   top: 0;
@@ -166,7 +165,7 @@ section {
 }
 
 .section-bg {
-  background-color: white;
+  background-color: transparent;
 }
 
 .section-title {
@@ -364,6 +363,7 @@ section {
   border: 3px;
   border-color: #29ABE2;
   border-style: solid;
+  margin-bottom: 15px;
 }
 
 .about .skills-content {

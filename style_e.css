@@ -92,6 +92,10 @@ h6,
   border-style: solid;
 }
 
+.img-fluid {
+  margin-bottom: 10px;
+}
+
 .item {
   border: none;
   margin-bottom: 30px;
