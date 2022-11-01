@@ -179,7 +179,8 @@ h6,
 
 .testimonial-wrap .testimonial img {
   
-  width: 300px;
+  height: 300px;
+  
   margin: 0 auto 10px auto;
 }
 
@@ -429,3 +430,4 @@ h6,
 .social a:hover {
   color: #000;
 }
+
