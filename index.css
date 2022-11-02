@@ -34,7 +34,7 @@
 }
 
 .hero-animated .animated {
-  margin-bottom: 60px;
+  margin-bottom: 50px;
   animation: up-down 2s ease-in-out infinite alternate-reverse both;
 }
 
