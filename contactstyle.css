@@ -361,7 +361,7 @@ section {
   background-size: cover;
   min-height: 500px;
   border: 3px;
-  border-color: #29ABE2;
+  border-color: #468f92;
   border-style: solid;
   margin-bottom: 15px;
 }
@@ -411,7 +411,7 @@ section {
   width: 1px;
   height: 10px;
   transition: 0s;
-  background-color: #29ABE2;
+  background-color: #468f92;
 }
 
 /*--------------------------------------------------------------
