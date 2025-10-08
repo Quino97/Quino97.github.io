@@ -18,32 +18,7 @@
   <link href="style_e.css" rel="stylesheet">
 </head>
 
-<nav class="fixed-top navbar navbar-expand-lg navbar-light nav-top">
-  <a class = 'navbar-brand' href = "index.html">
-    <img src="assets/images/qlogo.png" width="60" height="60" class="d-inline-block align-top" alt="" id = "navbarlogo">
-  </a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-    <ul class="navbar-nav">
-      <li class="nav-item">
-        <a class="nav-item nav-link" href="engineer.html">Engineering</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-item nav-link" href="code.html">Coding</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-item nav-link" href="personal.html">Personal Projects</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-item nav-link" href="contact.html">Curriculum Vitae and Contact</a>
-      </li>
-    </ul>
-  </div>
-
-</nav>
+<div id="navbar"></div>
 
 <body>
 <main id="main">
@@ -132,28 +107,21 @@
 
   <!-- Template Main JS File -->
   <script src="main.js"></script>
+  <script>
+    fetch("navbar.html")
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById("navbar").innerHTML = data;
+      })
+      .catch(error => console.error("Error loading navbar:", error));
+
+      fetch("footer.html")
+      .then(response => response.text())
+      .then(data => document.getElementById("footer").innerHTML = data)
+      .catch(err => console.error("Error loading footer:", err));
+
+  </script>
 </body>
-<nav class="navbar fixed-bottom navbar-expand-lg navbar-light nav-bot">
-  <a class="navbar-brand" id = "botnav" href="index.html">Quintin de Jongh</a>
-  
-  <div class="collapse navbar-collapse" id="navbarNav">
-    <ul class="navbar-nav">
-      <li>
-        <a href="https://www.facebook.com/quintin.dejongh.1"><i class="fa fa-fw fa-facebook"></i></a>
-      </li>
-      <li>
-        <a href="https://www.instagram.com/unessential_quino/"><i class="fa fa-fw fa-instagram"></i></a>
-      </li>
-      <li>
-        <a href="https://www.linkedin.com/in/quintin-de-jongh"><i class="fa fa-fw fa-linkedin"></i></a>
-      </li>
-      <li>
-        <a href="mailto:quintindejongh@gmail.com"><i class="fa fa-fw fa-envelope-o"></i></a>
-      </li>
-      <li>
-        <a href="tel:+27829435636"><i class="fa fa-fw fa-phone"></i></a>
-      </li>
-    </ul>
-  
-</nav>
+
+<div id="footer"></div>
 </html>
