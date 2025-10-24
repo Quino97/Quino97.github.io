@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+  <!-- Bootstrap & Icons -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href="/assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Custom CSS -->
+  <link href="/css/style_p.css" rel="stylesheet">
+
+  <title><!-- PROJECT TITLE -->Project Title Here</title>
+  <link rel="icon" href="/assets/images/qlogo.png" type="image/x-icon">
+</head>
+
+<body>
+  <!-- Navbar -->
+  <div id="navbar"></div>
+
+  <main id="main">
+    <!-- Project Section -->
+    <section class="section">
+      <div class="container">
+        <div class="row mb-4 align-items-center">
+          <div class="col-md-12" data-aos="fade-up">
+            <h2><!-- PROJECT HEADING -->Project Heading Here</h2>
+            <p><!-- PROJECT DESCRIPTION -->Brief description of the project, why you did it, and what it aims to solve or test.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="site-section pb-0">
+        <div class="container">
+          <div class="row align-items-stretch">
+            <!-- Gallery / Main Image -->
+            <div class="col-md-8" data-aos="fade-up">
+              <img src="<!-- MAIN IMAGE PATH -->/assets/images/project-image.jpg" alt="Project Image" class="img-fluid portimage mb-3">
+              
+              <!-- Optional Additional Images -->
+              <div class="row">
+                <div class="col-md-6 mb-3" data-aos="fade-up">
+                  <img src="<!-- ADDITIONAL IMAGE 1 PATH -->/assets/images/project-image2.jpg" class="img-fluid" alt="Extra Image">
+                </div>
+                <div class="col-md-6 mb-3" data-aos="fade-up">
+                  <img src="<!-- ADDITIONAL IMAGE 2 PATH -->/assets/images/project-image3.jpg" class="img-fluid" alt="Extra Image">
+                </div>
+              </div>
+            </div>
+
+            <!-- Sidebar / Key Info -->
+            <div class="col-md-4 ml-auto" data-aos="fade-up" data-aos-delay="100">
+              <div class="sticky-content">
+                <h3 class="h3"><!-- SIDEBAR TITLE -->Project Highlights</h3>
+                <p class="mb-4"><span class="text-muted"><!-- NOTE -->Optional note or context</span></p>
+
+                <h4 class="h4 mb-3">Key Contributions / Learnings</h4>
+                <ul class="list-unstyled list-line mb-5">
+                  <!-- LIST OF TASKS OR TAKEAWAYS -->
+                  <li>Ideation and conceptual design</li>
+                  <li>Prototyping / fabrication</li>
+                  <li>Testing and iteration</li>
+                  <li>Material selection and sourcing</li>
+                  <li>Visualization / diagrams</li>
+                  <li>Documentation and sharing</li>
+                </ul>
+
+                <!-- Optional link -->
+                <a href="<!-- LINK TO MORE DETAILS OR REPO -->" class="btn btn-outline-primary btn-sm">Learn More</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <div id="footer"></div>
+
+  <!-- Vendor JS Files -->
+  <script src="/assets/vendor/aos/aos.js"></script>
+  <script src="/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="/assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="/assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="/assets/vendor/php-email-form/validate.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="/js/main.js"></script>
+
+  <!-- Load Navbar & Footer -->
+  <script>
+    fetch("/navbar.html")
+      .then(response => response.text())
+      .then(data => { document.getElementById("navbar").innerHTML = data; })
+      .catch(error => console.error("Error loading navbar:", error));
+
+    fetch("/footer.html")
+      .then(response => response.text())
+      .then(data => { document.getElementById("footer").innerHTML = data; })
+      .catch(error => console.error("Error loading footer:", error));
+  </script>
+</body>
+</html>

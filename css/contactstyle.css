@@ -10,7 +10,7 @@
 --------------------------------------------------------------*/
 @font-face {
   font-family: "Raleway";
-  src: url("assets/fonts/Raleway.ttf") format('truetype');
+  src: url("/assets/fonts/Raleway.ttf") format('truetype');
 }
 body {
   font-family: "Raleway", sans-serif;
@@ -305,7 +305,7 @@ section {
 .about .content ul i {
   font-size: 16px;
   margin-right: 5px;
-  color: #969696;
+  color: #0f2f30;
   line-height: 0;
 }
 
@@ -320,7 +320,7 @@ section {
 .about .content .count-box i {
   display: block;
   font-size: 36px;
-  color: #969696;
+  color: #0f2f30;
   float: left;
   line-height: 0;
 }
@@ -330,7 +330,7 @@ section {
   line-height: 30px;
   display: block;
   font-weight: 700;
-  color: #3b434a;
+  color: #0f2f30;
   margin-left: 50px;
 }
 
@@ -339,27 +339,27 @@ section {
   margin: 0 0 0 50px;
   font-family: "Raleway", sans-serif;
   font-size: 14px;
-  color: #5d6a75;
+  color: #0f2f30;
 }
 
 .about .content .count-box a {
   font-weight: 600;
   display: block;
   margin-top: 20px;
-  color: #5d6a75;
+  color: #0f2f30;
   font-size: 15px;
   font-family: "Raleway", serif;
   transition: ease-in-out 0.3s;
 }
 
 .about .content .count-box a:hover {
-  color: #82909c;
+  color: #0f2f30;
 }
 
 .about .image {
-  background: url("assets/images/LQ2.jpg") center center no-repeat;
+  background: url("/assets/images/Chommies9338.jpg") center center no-repeat;
   background-size: cover;
-  min-height: 500px;
+  max-height: 500px;
   border: 3px;
   border-color: #468f92;
   border-style: solid;
