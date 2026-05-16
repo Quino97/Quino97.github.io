@@ -303,8 +303,12 @@
 
           <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:center;">
             <button id="seed-btn" class="btn btn-primary" type="button">🌱 Seed All Projects</button>
+            <button id="clear-reseed-btn" class="btn btn-outline" type="button" style="color:#EF4444;border-color:#EF4444;">🗑️ Clear All &amp; Reseed</button>
             <span id="seed-status" style="font-size:.88rem;color:var(--text-muted);"></span>
           </div>
+          <p style="font-size:.8rem;color:var(--text-muted);margin-top:10px;">
+            <strong>Seed</strong> skips any project titles that already exist. <strong>Clear All &amp; Reseed</strong> deletes every entry and starts fresh — use this to fix duplicates.
+          </p>
         </div>
       </section>
 
@@ -655,8 +659,12 @@
     { title: "DCMD Desalination",               category: "Work",     summary: "Direct Contact Membrane Distillation product design and development from concept to prototype.",                         imageUrl: "/assets/images/DCMDModule.png",     link: "/engineering/DCMD.html",       order: 2 },
     { title: "Flexolap Polisher",               category: "Academic", summary: "MSc thesis — a machine to mechanically polish Ti-6Al-4V components to a mirror finish.",                               imageUrl: "/assets/images/flexolap.png",       link: "/engineering/Flexolap.html",   order: 3 },
     { title: "Yaw, Roll & Telescopic Bracket",  category: "Work",     summary: "Custom multi-axis bracket system with M8/M12 locking bolts, stress analysis and prototyping.",                         imageUrl: "/assets/images/BracketA.jpeg",      link: "/engineering/Bracket.html",    order: 4 },
-    { title: "Fruit Crate FEA & CFD",           category: "Work",     summary: "In-depth structural analysis and CFD of a moulded fruit packing crate for a South African plastics company.",          imageUrl: "/assets/images/Agr2.jpg",           link: "/engineering/FruitCrate.html", order: 5 },
-    { title: "Vehicle Polisher",                category: "Academic", summary: "Final year product design — a compact vehicle polisher with bevel gears and ergonomic frame designed in SolidWorks.",   imageUrl: "/assets/images/op2.PNG",           link: "/engineering/polish.html",     order: 6 },
+    { title: "Fruit Crate FEA & CFD",                    category: "Work",     summary: "In-depth structural analysis and CFD of a moulded fruit packing crate for a South African plastics company.",          imageUrl: "/assets/images/Agr2.jpg",           link: "/engineering/FruitCrate.html", order: 5 },
+    { title: "Vehicle Polisher",                         category: "Academic", summary: "Final year product design — a compact vehicle polisher with bevel gears and ergonomic frame designed in SolidWorks.",   imageUrl: "/assets/images/op2.PNG",           link: "/engineering/polish.html",     order: 6 },
+    { title: "Pharmaceutical Utilities Engineering",     category: "Work",     summary: "Mechanical design and delivery of steam, chilled water, compressed air, potable water, and water treatment systems for a highly regulated manufacturing facility.", imageUrl: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=800&q=80", link: "#", order: 7 },
+    { title: "Industrial HVAC Design & CFD Validation",  category: "Work",     summary: "Engineering of large-scale HVAC systems and complex CFD simulations validating airflow and thermal performance for a major regulated facility.",                   imageUrl: "https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?auto=format&fit=crop&w=800&q=80", link: "#", order: 8 },
+    { title: "Hydrogen Reformer Optimisation",           category: "Work",     summary: "CFD-driven (OpenFOAM) optimisation of a hydrogen reformer to enhance thermal efficiency, flow uniformity, and structural robustness in high-temperature reactive environments.", imageUrl: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=800&q=80", link: "#", order: 9 },
+    { title: "Thermal-Fluid CAE Consultancy",            category: "Work",     summary: "Advanced OpenFOAM CFD simulations and 3D modelling (FreeCAD, SALOME) for thermal-fluid product development, translating CAE insights into manufacturable components.", imageUrl: "https://images.unsplash.com/photo-1565372195458-9de0b320ef04?auto=format&fit=crop&w=800&q=80", link: "#", order: 10 },
   ];
 
   const SEED_PER = [
@@ -725,9 +733,44 @@
     return `✓ Content type '${ctId}' created and published.`;
   }
 
-  async function seedEntry(ctId, fields) {
+  async function getExistingTitles(ctId) {
     const base = cfMgmtBase();
-    // Build entry body
+    const res = await fetch(`${base}/entries?content_type=${ctId}&limit=1000`, { headers: cfMgmtHeaders() });
+    if (!res.ok) return new Set();
+    const data = await res.json();
+    return new Set(
+      (data.items || []).map(e => (e.fields?.title?.["en-US"] || "").toLowerCase().trim())
+    );
+  }
+
+  async function deleteAllEntries(ctId, log) {
+    const base = cfMgmtBase();
+    const res = await fetch(`${base}/entries?content_type=${ctId}&limit=1000`, { headers: cfMgmtHeaders() });
+    if (!res.ok) return;
+    const data = await res.json();
+    for (const entry of data.items || []) {
+      const id = entry.sys.id;
+      const ver = entry.sys.version;
+      // Unpublish first (ignore error if already unpublished)
+      await fetch(`${base}/entries/${id}/published`, {
+        method: "DELETE", headers: { ...cfMgmtHeaders(), "X-Contentful-Version": `${ver}` },
+      });
+      // Re-fetch to get updated version after unpublish
+      const fresh = await fetch(`${base}/entries/${id}`, { headers: cfMgmtHeaders() });
+      const freshData = fresh.ok ? await fresh.json() : entry;
+      await fetch(`${base}/entries/${id}`, {
+        method: "DELETE", headers: { ...cfMgmtHeaders(), "X-Contentful-Version": `${freshData.sys.version}` },
+      });
+      log(`  ✗ Deleted: ${entry.fields?.title?.["en-US"] || id}`);
+    }
+  }
+
+  async function seedEntry(ctId, fields, existingTitles) {
+    const titleKey = (fields.title || "").toLowerCase().trim();
+    if (existingTitles && existingTitles.has(titleKey)) {
+      return `↳ Skipped (already exists): ${fields.title}`;
+    }
+    const base = cfMgmtBase();
     const entryFields = {};
     for (const [k, v] of Object.entries(fields)) {
       entryFields[k] = { "en-US": v };
@@ -737,14 +780,14 @@
       headers: { ...cfMgmtHeaders(), "X-Contentful-Content-Type": ctId },
       body: JSON.stringify({ fields: entryFields }),
     });
-    if (!createRes.ok) { const e = await createRes.json(); throw new Error(`Create entry failed: ${e.message}`); }
+    if (!createRes.ok) { const e = await createRes.json().catch(() => ({})); throw new Error(`Create entry failed: ${e.message}`); }
     const entry = await createRes.json();
-    // Publish
     const pubRes = await fetch(`${base}/entries/${entry.sys.id}/published`, {
       method: "PUT",
       headers: { ...cfMgmtHeaders(), "X-Contentful-Version": `${entry.sys.version}` },
     });
-    if (!pubRes.ok) { const e = await pubRes.json(); throw new Error(`Publish entry '${fields.title}' failed: ${e.message}`); }
+    if (!pubRes.ok) { const e = await pubRes.json().catch(() => ({})); throw new Error(`Publish entry '${fields.title}' failed: ${e.message}`); }
+    if (existingTitles) existingTitles.add(titleKey);
     return `✓ Published: ${fields.title}`;
   }
 
@@ -830,11 +873,16 @@
       log(await ensureContentType("engineeringProject", "Engineering Project", CT_FIELDS));
       log(await ensureContentType("personalProject",    "Personal Project",    CT_FIELDS));
 
+      log("── Fetching existing entries (dedup check) ─────");
+      const existingEng = await getExistingTitles("engineeringProject");
+      const existingPer = await getExistingTitles("personalProject");
+      log(`  Found ${existingEng.size} existing engineering, ${existingPer.size} existing personal entries.`);
+
       log("── Seeding engineering projects ────────────────");
-      for (const p of SEED_ENG) { log(await seedEntry("engineeringProject", p)); }
+      for (const p of SEED_ENG) { log(await seedEntry("engineeringProject", p, existingEng)); }
 
       log("── Seeding personal projects ───────────────────");
-      for (const p of SEED_PER) { log(await seedEntry("personalProject", p)); }
+      for (const p of SEED_PER) { log(await seedEntry("personalProject", p, existingPer)); }
 
       log("────────────────────────────────────────────────");
       log("✅ All done! Reload the Engineering / Personal pages to see live data.");
@@ -848,10 +896,66 @@
     }
   }
 
+  async function runClearAndReseed() {
+    const cfg = (window.QDJ_CONFIG || {}).contentful || {};
+    if (!cfg.managementToken || !cfg.spaceId) {
+      alert("Please save your Management Token and Space ID first.");
+      return;
+    }
+    if (!confirm("⚠️ This will DELETE all existing engineering and personal project entries in Contentful and recreate them from scratch. Are you sure?")) return;
+
+    const logEl    = document.getElementById("seed-log");
+    const statusEl = document.getElementById("seed-status");
+    const btn      = document.getElementById("clear-reseed-btn");
+    const seedBtn  = document.getElementById("seed-btn");
+
+    btn.disabled = true; seedBtn.disabled = true;
+    btn.textContent = "⏳ Clearing…";
+    document.getElementById("seed-progress").style.display = "block";
+    logEl.innerHTML = "";
+    statusEl.textContent = "";
+
+    function log(msg, isError) {
+      const line = document.createElement("div");
+      line.style.cssText = `padding:2px 0;color:${isError ? "#EF4444" : isError === false ? "#22C55E" : "#94A3B8"};`;
+      line.textContent = msg;
+      logEl.appendChild(line);
+      logEl.scrollTop = logEl.scrollHeight;
+    }
+
+    try {
+      log("── Deleting all engineering entries ────────────");
+      await deleteAllEntries("engineeringProject", log);
+      log("── Deleting all personal entries ───────────────");
+      await deleteAllEntries("personalProject", log);
+
+      log("── Recreating content types ────────────────────");
+      log(await ensureContentType("engineeringProject", "Engineering Project", CT_FIELDS));
+      log(await ensureContentType("personalProject",    "Personal Project",    CT_FIELDS));
+
+      log("── Seeding engineering projects ────────────────");
+      for (const p of SEED_ENG) { log(await seedEntry("engineeringProject", p, null)); }
+
+      log("── Seeding personal projects ───────────────────");
+      for (const p of SEED_PER) { log(await seedEntry("personalProject", p, null)); }
+
+      log("────────────────────────────────────────────────");
+      log("✅ All done! Reload the Engineering / Personal pages to see live data.");
+      statusEl.textContent = "✅ Clear & reseed complete";
+      btn.textContent = "✓ Done";
+    } catch (err) {
+      log("❌ " + err.message, true);
+      statusEl.textContent = "❌ Failed — see log";
+      btn.disabled = false; seedBtn.disabled = false;
+      btn.textContent = "🗑️ Clear All & Reseed";
+    }
+  }
+
   /* ── Boot ────────────────────────────────────────────────── */
   document.addEventListener("DOMContentLoaded", () => {
     if (isLoggedIn()) { showShell(); }
     document.getElementById("seed-btn")?.addEventListener("click", runSeed);
+    document.getElementById("clear-reseed-btn")?.addEventListener("click", runClearAndReseed);
     document.getElementById("test-mgmt-btn")?.addEventListener("click", testManagementToken);
   });
   </script>
