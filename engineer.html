@@ -2,123 +2,134 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link href="/assets/vendor/aos/aos.css" rel="stylesheet">
-  <link href="/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-  <link href="/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
-
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-  <title>Engineering Projects</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Engineering Projects — Quintin de Jongh</title>
+  <meta name="description" content="Engineering projects by Quintin de Jongh — work, academic and personal.">
   <link rel="icon" href="/assets/images/qlogo.png" type="image/x-icon">
-  <link href="/css/cover.css" rel="stylesheet">
-  <link href="/css/style_e.css" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/theme.css">
 </head>
-
-<div id="navbar"></div>
-
-
 <body>
-  <section class="section site-portfolio">
+  <div id="qdj-navbar"></div>
+
+  <!-- PAGE HERO -->
+  <div class="page-hero">
     <div class="container">
-      <div class="row mb-5 align-items-center">
-        <div class="col-md-12 col-lg-6 mb-4 mb-lg-0" data-aos="fade-up">
-          <h2>Engineering Projects</h2>
-          <p class="mb-0">Personal, Academic and Work Related</p>
-        </div>
-        
+      <span class="eyebrow reveal">Portfolio</span>
+      <h1 class="reveal">Engineering Projects</h1>
+      <p class="reveal">Personal, academic and work-related projects across mechanical design, CAE and product development.</p>
+    </div>
+  </div>
+
+  <!-- FILTER TABS -->
+  <section style="padding:40px 0 0;">
+    <div class="container">
+      <div id="filter-tabs" style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:40px;" class="reveal">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="Work">Work</button>
+        <button class="filter-btn" data-filter="Academic">Academic</button>
       </div>
-      <div id="portfolio-grid" class="row no-gutter" data-aos="fade-up" data-aos-delay="200">
-        <div class="item photography col-sm-6 col-md-4 col-lg-4 mb-4">
-          <a href="/engineering/Hydrogen.html" class="item-wrap fancybox">
-            <div class="work-info">
-              <h3>Hydrogen Reformer</h3>
-              <span>Work</span>
-            </div>
-            <img class="img-fluid portimage" src="/assets/images/ReformerTubes.jpg">
-          </a>
-        </div>
-        <div class="item photography col-sm-6 col-md-4 col-lg-4 mb-4">
-          <a href="/engineering/DCMD.html" class="item-wrap fancybox">
-            <div class="work-info">
-              <h3>DCMD Desalination Product</h3>
-              <span>Work</span>
-            </div>
-            <img class="img-fluid portimage" src="/assets/images/DCMDModule.png">
-          </a>
-        </div>
-        <div class="item photography col-sm-6 col-md-4 col-lg-4 mb-4">
-          <a href="/engineering/Bracket.html" class="item-wrap fancybox">
-            <div class="work-info">
-              <h3>Custom Bracket Hook</h3>
-              <span>Work</span>
-            </div>
-            <img class="img-fluid portimage" src="/assets/images/BracketB.jpeg">
-          </a>
-        </div>
-        <div class="item photography col-sm-6 col-md-4 col-lg-4 mb-4">
-          <a href="/engineering/FruitCrate.html" class="item-wrap fancybox">
-            <div class="work-info">
-              <h3>Crate Structural Anlaysis</h3>
-              <span>Work</span>
-            </div>
-            <img class="img-fluid portimage" src="/assets/images/FruitCrate.png">
-          </a>
-        </div>
 
-        <div class="item photography col-sm-6 col-md-4 col-lg-4 mb-4">
-          <a href="/engineering/Flexolap.html" class="item-wrap fancybox">
-            <div class="work-info">
-              <h3>Flexolap</h3>
-              <span>Academic</span>
-            </div>
-            <img class="img-fluid portimage" src="/assets/images/flexolap.png">
-          </a>
-        </div>
-               
-        <div class="item branding col-sm-6 col-md-4 col-lg-4 mb-4">
-          <a href="/engineering/polish.html" class="item-wrap fancybox">
-            <div class="work-info">
-              <h3>Vehicle Polisher</h3>
-              <span>Academic</span>
-            </div>
-            <img class="img-fluid portimage" src="/assets/images/orbpol.PNG">
-          </a>
-        </div>
+      <!-- Contentful notice (hidden once loaded) -->
+      <div id="cf-setup-notice" class="notice info" style="display:none;">
+        <strong>Contentful not yet connected.</strong> Showing static project data. Visit <a href="/admin.html">Admin Portal</a> to connect your Contentful space and manage projects dynamically.
+      </div>
 
-
+      <!-- Project grid -->
+      <div id="projects-grid" class="grid grid-auto-280 reveal" style="padding-bottom:80px;">
+        <!-- Populated by JS below -->
       </div>
     </div>
-  </section><!-- End  Works Section -->
+  </section>
 
-    <!-- Vendor JS Files -->
-    <script src="/assets/vendor/aos/aos.js"></script>
-    <script src="/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="/assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-    <script src="/assets/vendor/swiper/swiper-bundle.min.js"></script>
-    <script src="/assets/vendor/php-email-form/validate.js"></script>
-  
-    <!-- Template Main JS File -->
-    <script src="/assets/js/main.js"></script>
+  <div id="qdj-footer"></div>
 
-    <script>
-      fetch("/navbar.html")
-        .then(response => response.text())
-        .then(data => {
-          document.getElementById("navbar").innerHTML = data;
-        })
-        .catch(error => console.error("Error loading navbar:", error));
-  
-        fetch("/footer.html")
-        .then(response => response.text())
-        .then(data => document.getElementById("footer").innerHTML = data)
-        .catch(err => console.error("Error loading footer:", err));
-  
-    </script>
-  </body>
-  
-  <div id="footer"></div>
+  <script src="/js/config.js"></script>
+  <script src="/js/contentful.js"></script>
+  <script src="/js/site.js"></script>
+  <script>
+    /* ── Static fallback data ─────────────────────────────── */
+    const STATIC_ENG = [
+      { title: "Hydrogen Reformer",            category: "Work",     img: "/assets/images/ReformerTubes.jpg", link: "/engineering/Hydrogen.html", summary: "Lead engineer on a complete hydrogen steam methane reformer — CAD, FEA, commissioning and PLC control." },
+      { title: "DCMD Desalination Product",    category: "Work",     img: "/assets/images/DCMDModule.png",    link: "/engineering/DCMD.html",     summary: "Direct Contact Membrane Distillation product designed and developed from concept to working prototype." },
+      { title: "Custom Bracket Hook",          category: "Work",     img: "/assets/images/BracketB.jpeg",     link: "/engineering/Bracket.html",  summary: "Structural bracket design and analysis for an industrial application." },
+      { title: "Crate Structural Analysis",    category: "Work",     img: "/assets/images/FruitCrate.png",    link: "/engineering/FruitCrate.html",summary: "FEA and structural analysis of a commercial fruit crate under various load conditions." },
+      { title: "Flexolap Polisher",            category: "Academic", img: "/assets/images/flexolap.png",      link: "/engineering/Flexolap.html", summary: "MSc thesis — a machine to mechanically polish Ti-6Al-4V components to a mirror finish." },
+      { title: "Vehicle Polisher",             category: "Academic", img: "/assets/images/orbpol.PNG",        link: "/engineering/polish.html",   summary: "Orbital polishing machine designed for safe and effective vehicle surface finishing." },
+    ];
+
+    const tagClass = { Work: "work", Academic: "academic", Personal: "personal", Friend: "friend" };
+
+    function renderCards(items) {
+      const grid = document.getElementById("projects-grid");
+      grid.innerHTML = items.map(p => `
+        <a href="${p.link || '#'}" class="card-project">
+          <div class="card-project-img">
+            <img src="${p.img || '/assets/images/qlogo.png'}" alt="${p.title}" loading="lazy">
+            <div class="card-project-overlay"><span>View Project</span></div>
+          </div>
+          <div class="card-project-body">
+            <span class="card-tag ${tagClass[p.category] || ''}">${p.category || ''}</span>
+            <h3>${p.title}</h3>
+            <p>${p.summary || ''}</p>
+          </div>
+        </a>`).join("");
+    }
+
+    let allProjects = [];
+
+    async function loadProjects() {
+      const cf = window.QDJ_cf;
+      if (cf && cf.isConfigured()) {
+        try {
+          const res = await cf.getEntries("engineeringProject", { order: "fields.order" });
+          if (res.items && res.items.length) {
+            allProjects = res.items.map(item => {
+              const f = item.fields || {};
+              return {
+                title:    f.title || "",
+                category: f.category || "",
+                img:      f.imageUrl || cf.assetUrl(f.image, res.includes) || "",
+                link:     f.link || "#",
+                summary:  f.summary || "",
+              };
+            });
+            renderCards(allProjects);
+            return;
+          }
+        } catch (e) { console.warn("Contentful load failed", e); }
+      }
+      // Fallback
+      document.getElementById("cf-setup-notice").style.display = "block";
+      allProjects = STATIC_ENG;
+      renderCards(allProjects);
+    }
+
+    /* ── Filter logic ─────────────────────────────────────── */
+    document.addEventListener("DOMContentLoaded", () => {
+      loadProjects();
+
+      document.getElementById("filter-tabs").addEventListener("click", e => {
+        const btn = e.target.closest(".filter-btn");
+        if (!btn) return;
+        document.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+        const f = btn.dataset.filter;
+        renderCards(f === "all" ? allProjects : allProjects.filter(p => p.category === f));
+      });
+    });
+  </script>
+
+  <style>
+    .filter-btn {
+      padding: 8px 20px; border-radius: var(--radius-pill); border: 1.5px solid var(--line);
+      background: none; font-family: var(--font-main); font-size: .86rem; font-weight: 600;
+      color: var(--text-muted); cursor: pointer; transition: all .18s ease;
+    }
+    .filter-btn:hover { border-color: var(--accent); color: var(--accent); }
+    .filter-btn.active { background: var(--navy); border-color: var(--navy); color: #fff; }
+  </style>
+</body>
 </html>

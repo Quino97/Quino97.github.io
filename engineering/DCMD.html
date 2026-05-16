@@ -1,102 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link href="/assets/vendor/aos/aos.css" rel="stylesheet">
-  <link href="/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-  <link href="/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
-
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-  <title>DCMD</title>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>DCMD Desalination — Quintin de Jongh</title>
   <link rel="icon" href="/assets/images/qlogo.png" type="image/x-icon">
-  
-  <link href="/css/style_e.css" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/theme.css">
 </head>
-
-<div id="navbar"></div>
-
 <body>
-<main id="main">
+  <div id="qdj-navbar"></div>
 
-  <section class="section">
+  <div class="project-hero">
     <div class="container">
-      <div class="row mb-4 align-items-center">
-        <div class="col-md-12" data-aos="fade-up">
-          <h2>DCMD Membrane Module Product</h2>
-          <p>A direct contact membrane module system that desalinates water and is intented for use in personal homes in Saudi Arabia. 
-            The project involved developing a module that improves permeate production by minimizing cross flow and temperature polarization 
-            as well as creating a modular membrane system that allows for more or less production of permeate depending on feed availability. 
-            Control and automation software was developed by myself for this project (PLC and HMI). Experimental planning and setup, 
-            CAD design, compression mould design for seals, thermodynamic and fluidic calculations and CFD.
-            Note that client information and further project details and confidential and cannot be shared.
-          </p>
+      <a href="/engineer.html" class="back-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="15 18 9 12 15 6"/></svg>
+        Engineering Projects
+      </a>
+      <div class="project-meta">
+        <span class="card-tag work">Work</span>
+        <span style="color:rgba(255,255,255,.45);font-size:.82rem;">Skeg Product Development</span>
+      </div>
+      <h1>DCMD Desalination Product</h1>
+      <p style="color:rgba(255,255,255,.65);max-width:640px;font-size:1.05rem;line-height:1.65;">
+        A Direct Contact Membrane Distillation module designed to desalinate water for residential use, improving permeate production by minimising cross-flow and temperature polarisation.
+      </p>
+    </div>
+  </div>
+
+  <section>
+    <div class="container">
+      <div class="grid grid-2" style="gap:60px;align-items:start;">
+        <div class="project-images reveal">
+          <img src="/assets/images/DCMDModule.png" alt="DCMD Module">
+          <img src="/assets/images/DCMDDiagram.png" alt="DCMD System Diagram">
+          <img src="/assets/images/DCMD.png" alt="DCMD Detail">
+        </div>
+        <div class="project-sidebar reveal">
+          <div class="card" style="margin-bottom:24px;">
+            <h3 style="margin-bottom:16px;">About the Project</h3>
+            <p>A direct contact membrane module system that desalinates water, intended for use in personal homes in Saudi Arabia. The project involved developing a module that improves permeate production by minimising cross-flow and temperature polarisation, as well as creating a modular membrane system allowing for variable permeate production based on feed availability.</p>
+            <p style="color:var(--text-muted);font-size:.9rem;">Client information and further project details are confidential.</p>
+          </div>
+          <div class="card">
+            <h4 style="margin-bottom:16px;color:var(--accent);">// What I Did</h4>
+            <ul class="what-i-did">
+              <li>Detailed product design and CAD</li>
+              <li>CFD simulations and system diagrams</li>
+              <li>Component and sensor specification and procurement</li>
+              <li>Thermodynamic and fluid mechanic engineering</li>
+              <li>Automation and PLC/HMI control (BECKHOFF TwinCAT)</li>
+              <li>Compression mould design for seals</li>
+              <li>DOE and commissioning</li>
+              <li>Experimentation and classification</li>
+              <li>Design for manufacture</li>
+              <li>Client liaison and project management</li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
-
-    <div class="site-section pb-0">
-      <div class="container">
-        <div class="row align-items-stretch">
-          <div class="col-md-8" data-aos="fade-up">
-            <img src="/assets/images/DCMDDiagram.png" alt="Image" class="img-fluid portimage">
-          </div>
-          <div class="col-md-4 ml-auto" data-aos="fade-up" data-aos-delay="100">
-            <div class="sticky-content">
-              <h3 class="h3">General System Diagram of DCMD</h3>
-              <p class="mb-4"><span class="text-muted">Note that this is a general diagram</span></p>
-
-              <h4 class="h4 mb-3">What I did</h4>
-              <ul class="list-unstyled list-line mb-5">
-                <li>Detailed Design</li>
-                <li>Simulations, CFD, System Diagram</li>
-                <li>Component and Sensor Specification and Procurement</li>
-                <li>Thermodynamic, Fluid Mechanic Engineering</li>
-                <li>Automation and Control (PLC)</li>
-                <li>DOE and Commisioning</li>
-                <li>Experimentation and Classification</li>
-                <li>Design for Manufacture</li>
-                <li>Client Liasion and Project Management</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
   </section>
 
-  <!-- ======= Testimonials Section ======= -->
-
-
-</main><!-- End #main -->
-  <!-- Vendor JS Files -->
-  <script src="/assets/vendor/aos/aos.js"></script>
-  <script src="/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="/assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-  <script src="/assets/vendor/swiper/swiper-bundle.min.js"></script>
-  <script src="/assets/vendor/php-email-form/validate.js"></script>
-
-  <!-- Template Main JS File -->
-  <script src="/js/main.js"></script>
-
-  <script>
-    fetch("/navbar.html")
-      .then(response => response.text())
-      .then(data => {
-        document.getElementById("navbar").innerHTML = data;
-      })
-      .catch(error => console.error("Error loading navbar:", error));
-
-      fetch("/footer.html")
-      .then(response => response.text())
-      .then(data => document.getElementById("footer").innerHTML = data)
-      .catch(err => console.error("Error loading footer:", err));
-
-  </script>
+  <div id="qdj-footer"></div>
+  <script src="/js/config.js"></script><script src="/js/site.js"></script>
 </body>
-
-<div id="footer"></div>
 </html>

@@ -2,64 +2,199 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <!-- Vendor CSS Files -->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-  <title>Home</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Quintin de Jongh — Mechanical Project Engineer</title>
+  <meta name="description" content="Mechanical Project Engineer specialising in thermal-fluid systems, CAE, and complex industrial infrastructure. Based in Cape Town, South Africa.">
   <link rel="icon" href="/assets/images/qlogo.png" type="image/x-icon">
-
-  <!-- Main CSS Files -->
-  <link href="/css/cover.css" rel="stylesheet">
-  <link href="/css/style.css" rel="stylesheet">
-  <link href="/css/index.css" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/theme.css">
 </head>
+<body>
+  <div id="qdj-navbar"></div>
 
-
-<div id="navbar"></div>
-
- 
-  <section id="hero-animated" class="hero-animated d-flex align-items-center">
-    <div class="container d-flex flex-column justify-content-center align-items-center text-center position-relative" data-aos="zoom-out">
-      <img src="/assets/images/LQ1.jpg" class="img-fluid animated">
-      <h2>Quintin de Jongh</h2>
-      <h3><span class="typed" data-typed-items="Mechanical Engineer, Developer, Product Designer"></span></h3>     
-      <p>Mechanical Engineer, using a CAE and hands-on approach to develop high-end products & machines.</p>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-grid"></div>
+    <img class="hero-img" src="https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&w=1920&q=80" alt="Engineering workspace">
+    <div class="hero-overlay"></div>
+    <div class="hero-inner">
+      <img src="/assets/images/QuintinProfilePicture.jpeg" alt="Quintin de Jongh" class="hero-avatar reveal">
+      <span class="eyebrow reveal">Cape Town, South Africa</span>
+      <h1 class="reveal">Quintin de Jongh</h1>
+      <p class="lead reveal" id="hero-typed-wrap" style="min-height:1.8em;">
+        <span id="hero-typed"></span>
+      </p>
+      <p class="reveal" style="color:rgba(255,255,255,.68);max-width:540px;margin:0 auto 36px;font-size:.98rem;">
+        MSc Mechanical Engineer specialising in thermal-fluid systems, CAE, and complex industrial infrastructure.
+      </p>
+      <div class="hero-cta reveal">
+        <a href="/engineer.html" class="btn btn-primary btn-lg">View Projects</a>
+        <a href="/contact.html" class="btn btn-outline-light btn-lg">Get in Touch</a>
+      </div>
     </div>
   </section>
 
-  <script src="/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="/assets/vendor/aos/aos.js"></script>
-  <script src="/assets/vendor/glightbox/js/glightbox.min.js"></script>
-  <script src="/assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-  <script src="/assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <!-- STATS -->
+  <section style="padding:0;background:var(--bg-white);border-bottom:1px solid var(--line-soft);">
+    <div class="container">
+      <div class="stat-strip reveal">
+        <div class="stat-item"><span class="stat-num">2</span><span class="stat-label">Degrees with distinction</span></div>
+        <div class="stat-item"><span class="stat-num">5+</span><span class="stat-label">Years of industry experience</span></div>
+        <div class="stat-item"><span class="stat-num">6</span><span class="stat-label">Journal &amp; conference papers</span></div>
+        <div class="stat-item"><span class="stat-num">11+</span><span class="stat-label">CAE softwares &amp; languages</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="container">
+      <div class="grid grid-2" style="gap:72px;align-items:center;">
+        <div class="reveal">
+          <span class="eyebrow">About Me</span>
+          <h2>Engineering with precision and purpose.</h2>
+          <p class="lead">Devoted engineer with a passion for innovation and productivity — bridging rigorous analysis and real-world hardware.</p>
+          <p>Currently working as a Mechanical Project Engineer at Calibre Life Sciences, leading the design and delivery of high-spec utilities for a multi-billion dollar pharmaceutical manufacturing facility. Previously a CAE &amp; Product Development Consultant at Cauchy Consult and lead engineer at Skeg Product Development on a hydrogen reformer and DCMD desalination product.</p>
+          <p>I hold an MSc in Mechanical Engineering from UCT, completed faster than any other mechanical engineering student, and spent a year as a lecturer and course convenor for a 120-student manufacturing science course.</p>
+          <div style="display:flex;gap:16px;margin-top:28px;flex-wrap:wrap;">
+            <a href="/resume.html" class="btn btn-primary">View Full Resume</a>
+            <a href="/engineer.html" class="btn btn-outline">Engineering Projects <span class="arrow">→</span></a>
+          </div>
+        </div>
+        <div class="reveal">
+          <img src="/assets/images/quintin.jpg" alt="Quintin de Jongh"
+               style="border-radius:var(--radius-lg);box-shadow:var(--shadow-lg);aspect-ratio:4/5;object-fit:cover;width:100%;">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section class="alt">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">Expertise</span>
+        <h2>Core competencies.</h2>
+        <p>A blend of simulation, design, and hands-on development across the full product lifecycle.</p>
+      </div>
+      <div class="grid grid-2" style="gap:60px;align-items:start;">
+        <div class="reveal">
+          <div class="skill-bar"><div class="skill-bar-label"><span>SolidWorks</span><span>90%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" style="width:90%"></div></div></div>
+          <div class="skill-bar"><div class="skill-bar-label"><span>PTC Creo</span><span>80%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" style="width:80%"></div></div></div>
+          <div class="skill-bar"><div class="skill-bar-label"><span>SALOME &amp; OpenFOAM (CFD/FEA)</span><span>70%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" style="width:70%"></div></div></div>
+          <div class="skill-bar"><div class="skill-bar-label"><span>FreeCAD</span><span>80%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" style="width:80%"></div></div></div>
+          <div class="skill-bar"><div class="skill-bar-label"><span>HTML / CSS / JavaScript</span><span>80%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" style="width:80%"></div></div></div>
+          <div class="skill-bar"><div class="skill-bar-label"><span>BECKHOFF TwinCAT PLC &amp; HMI</span><span>70%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" style="width:70%"></div></div></div>
+        </div>
+        <div class="grid grid-2 reveal" style="gap:16px;">
+          <div class="card" style="padding:22px;">
+            <div style="width:46px;height:46px;border-radius:var(--radius-sm);background:var(--accent-soft);color:var(--accent);display:flex;align-items:center;justify-content:center;margin-bottom:14px;">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/></svg>
+            </div>
+            <h4>CAE &amp; FEA</h4>
+            <p style="font-size:.88rem;color:var(--text-muted);margin:0;">Structural analysis, CFD, thermal modelling.</p>
+          </div>
+          <div class="card" style="padding:22px;">
+            <div style="width:46px;height:46px;border-radius:var(--radius-sm);background:var(--accent-soft);color:var(--accent);display:flex;align-items:center;justify-content:center;margin-bottom:14px;">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+            </div>
+            <h4>Product Design</h4>
+            <p style="font-size:.88rem;color:var(--text-muted);margin:0;">From concept sketches to manufactured hardware.</p>
+          </div>
+          <div class="card" style="padding:22px;">
+            <div style="width:46px;height:46px;border-radius:var(--radius-sm);background:var(--accent-soft);color:var(--accent);display:flex;align-items:center;justify-content:center;margin-bottom:14px;">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+            </div>
+            <h4>Development</h4>
+            <p style="font-size:.88rem;color:var(--text-muted);margin:0;">PLC, HMI, web front-end &amp; Flutter apps.</p>
+          </div>
+          <div class="card" style="padding:22px;">
+            <div style="width:46px;height:46px;border-radius:var(--radius-sm);background:var(--accent-soft);color:var(--accent);display:flex;align-items:center;justify-content:center;margin-bottom:14px;">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            </div>
+            <h4>Research</h4>
+            <p style="font-size:.88rem;color:var(--text-muted);margin:0;">6 published papers. Academic &amp; industry researcher.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURED PROJECTS -->
+  <section>
+    <div class="container">
+      <div class="section-head-row reveal">
+        <div>
+          <span class="eyebrow">Featured Work</span>
+          <h2>Recent Engineering Projects</h2>
+        </div>
+        <a href="/engineer.html" class="btn btn-ghost">See all projects <span class="arrow">→</span></a>
+      </div>
+      <div class="grid grid-3 reveal">
+        <a href="/engineering/Hydrogen.html" class="card-project">
+          <div class="card-project-img">
+            <img src="/assets/images/ReformerTubes.jpg" alt="Hydrogen Reformer">
+            <div class="card-project-overlay"><span>View Project</span></div>
+          </div>
+          <div class="card-project-body">
+            <span class="card-tag work">Work</span>
+            <h3>Hydrogen Reformer</h3>
+            <p>Lead engineer on a complete hydrogen steam methane reformer — CAD, FEA, commissioning and control.</p>
+          </div>
+        </a>
+        <a href="/engineering/DCMD.html" class="card-project">
+          <div class="card-project-img">
+            <img src="/assets/images/DCMDModule.png" alt="DCMD Desalination">
+            <div class="card-project-overlay"><span>View Project</span></div>
+          </div>
+          <div class="card-project-body">
+            <span class="card-tag work">Work</span>
+            <h3>DCMD Desalination</h3>
+            <p>Direct Contact Membrane Distillation product design and development from concept to prototype.</p>
+          </div>
+        </a>
+        <a href="/engineering/Flexolap.html" class="card-project">
+          <div class="card-project-img">
+            <img src="/assets/images/flexolap.png" alt="Flexolap">
+            <div class="card-project-overlay"><span>View Project</span></div>
+          </div>
+          <div class="card-project-body">
+            <span class="card-tag academic">Academic</span>
+            <h3>Flexolap Polisher</h3>
+            <p>MSc thesis — a machine to mechanically polish Ti-6Al-4V components to a mirror finish.</p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="alt">
+    <div class="container-narrow">
+      <div class="cta-block reveal">
+        <h2>Let's build something great.</h2>
+        <p>Looking for a CAE consultant, product developer, or engineering collaborator? I'd love to hear about your project.</p>
+        <a href="/contact.html" class="btn btn-primary btn-lg">Get in Touch</a>
+      </div>
+    </div>
+  </section>
+
+  <div id="qdj-footer"></div>
+
   <script src="/assets/vendor/typed.js/typed.min.js"></script>
-  <script src="/assets/vendor/php-email-form/validate.js"></script>
-
-  <!-- Template Main JS File -->
-  <script src="/js/index.js"></script>
-  <script src="/js/typejs.js"></script>
-
-
+  <script src="/js/config.js"></script>
+  <script src="/js/site.js"></script>
   <script>
-    fetch("/navbar.html")
-      .then(response => response.text())
-      .then(data => {
-        document.getElementById("navbar").innerHTML = data;
-      })
-      .catch(error => console.error("Error loading navbar:", error));
-
-      fetch("/footer.html")
-      .then(response => response.text())
-      .then(data => document.getElementById("footer").innerHTML = data)
-      .catch(err => console.error("Error loading footer:", err));
-
+    document.addEventListener("DOMContentLoaded", function () {
+      if (window.Typed) {
+        new Typed("#hero-typed", {
+          strings: ["Mechanical Project Engineer.", "CAE Specialist.", "Product Developer.", "Problem Solver."],
+          typeSpeed: 55, backSpeed: 30, backDelay: 2000, loop: true
+        });
+      }
+    });
   </script>
 </body>
-
-<div id="footer"></div>
 </html>

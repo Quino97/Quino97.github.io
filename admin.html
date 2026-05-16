@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Admin — Quintin de Jongh</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" href="/assets/images/qlogo.png" type="image/x-icon">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/theme.css">
+  <style>
+    /* ── Login screen ─────────────────────────────────────── */
+    .login-screen {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--navy-dark);
+      background-image: linear-gradient(135deg, rgba(37,99,235,.12) 0%, transparent 60%);
+      padding: 24px;
+    }
+    .login-card {
+      background: var(--bg-white);
+      border-radius: var(--radius-lg);
+      padding: 48px 44px;
+      width: 100%;
+      max-width: 420px;
+      box-shadow: var(--shadow-lg);
+    }
+    .login-card .logo {
+      display: flex; align-items: center; gap: 12px; margin-bottom: 32px;
+    }
+    .login-card .logo img { height: 44px; border-radius: var(--radius-sm); }
+    .login-card .logo-name { font-weight: 800; font-size: 1.05rem; color: var(--navy); line-height: 1.2; }
+    .login-card .logo-name small { display: block; font-size: .65rem; color: var(--accent); font-weight: 600; letter-spacing: .14em; text-transform: uppercase; margin-top: 2px; }
+    .login-card h2 { margin-bottom: 6px; font-size: 1.6rem; }
+    .login-card .sub { color: var(--text-muted); font-size: .9rem; margin-bottom: 28px; }
+    #login-error { display: none; }
+  </style>
+</head>
+<body>
+
+  <!-- ── LOGIN SCREEN ──────────────────────────────────────── -->
+  <div class="login-screen" id="login-screen">
+    <div class="login-card">
+      <div class="logo">
+        <img src="/assets/images/qlogo.png" alt="Q">
+        <div class="logo-name">Quintin de Jongh<small>Admin Portal</small></div>
+      </div>
+      <h2>Sign In</h2>
+      <p class="sub">Enter your credentials to manage the website.</p>
+      <form id="login-form" novalidate>
+        <div class="field">
+          <label>Email</label>
+          <input class="input" type="email" id="login-email" placeholder="quintindejongh@gmail.com" autocomplete="username" required>
+        </div>
+        <div class="field">
+          <label>Password</label>
+          <input class="input" type="password" id="login-password" placeholder="••••••••" autocomplete="current-password" required>
+        </div>
+        <div class="notice error" id="login-error">Incorrect email or password.</div>
+        <button type="submit" class="btn btn-primary btn-block" style="margin-top:8px;">Sign In</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ── ADMIN SHELL (hidden until logged in) ─────────────── -->
+  <div class="admin-shell" id="admin-shell" style="display:none;">
+
+    <!-- Mobile top bar -->
+    <div class="admin-mobile-bar">
+      <button class="admin-hamburger" id="admin-hamburger" aria-label="Open menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
+        </svg>
+      </button>
+      <div class="mob-brand">Quintin de Jongh<small>Admin Portal</small></div>
+    </div>
+
+    <!-- Sidebar -->
+    <aside class="admin-sidebar" id="admin-sidebar">
+      <button id="admin-sidebar-close" aria-label="Close"
+        style="display:none;position:absolute;top:14px;right:14px;background:none;border:none;cursor:pointer;color:rgba(255,255,255,.6);padding:6px;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
+      </button>
+      <div class="brand">
+        <img src="/assets/images/qlogo.png" alt="Q">
+        <div class="brand-text">Quintin de Jongh<small>Admin Portal</small></div>
+      </div>
+      <nav>
+        <a data-panel="dashboard" class="active">🏠 Dashboard</a>
+        <a data-panel="engineering">⚙️ Engineering Projects</a>
+        <a data-panel="personal">🔨 Personal Projects</a>
+        <a data-panel="setup">🔧 Contentful Setup</a>
+      </nav>
+      <div class="logout">
+        <button id="logout-btn" type="button">Sign Out</button>
+        <p style="font-size:.7rem;color:rgba(255,255,255,.35);margin:10px 0 0;text-align:center;">
+          <a href="/index.html" style="color:rgba(255,255,255,.45);text-decoration:underline;">← Back to website</a>
+        </p>
+      </div>
+    </aside>
+
+    <div class="admin-sidebar-backdrop" id="admin-sidebar-backdrop"></div>
+
+    <!-- Main content -->
+    <main class="admin-main">
+      <div class="admin-header">
+        <div>
+          <h2 id="panel-title">Dashboard</h2>
+          <p id="panel-subtitle">Manage your website content.</p>
+        </div>
+        <div style="font-size:.84rem;color:var(--text-muted);">
+          Signed in as <strong id="admin-email-display">—</strong>
+        </div>
+      </div>
+
+      <!-- ── DASHBOARD ─────────────────────────────────────── -->
+      <section class="admin-panel active" id="panel-dashboard">
+        <div class="stat-grid">
+          <div class="stat-card"><div class="num" id="stat-eng">—</div><div class="lbl">Engineering Projects</div></div>
+          <div class="stat-card"><div class="num" id="stat-per">—</div><div class="lbl">Personal Projects</div></div>
+          <div class="stat-card"><div class="num" id="stat-cf">—</div><div class="lbl">Contentful Status</div></div>
+        </div>
+        <div class="card">
+          <h3>Welcome back 👋</h3>
+          <p>Use the left menu to manage your website content.</p>
+          <ul style="margin:14px 0;padding-left:18px;color:var(--text-muted);font-size:.92rem;">
+            <li><strong>⚙️ Engineering Projects</strong> — add, edit or remove engineering portfolio cards.</li>
+            <li><strong>🔨 Personal Projects</strong> — manage personal, academic and "for friend" projects.</li>
+            <li><strong>🔧 Contentful Setup</strong> — connect your Contentful space to enable dynamic project management.</li>
+          </ul>
+          <div id="dashboard-cf-status" class="notice warn" style="margin-top:18px;">
+            Contentful is not yet connected. Projects will show static fallback data on the public site.
+            <a href="#" onclick="showPanel('setup'); return false;" style="font-weight:700;"> Set it up now →</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── ENGINEERING PROJECTS ──────────────────────────── -->
+      <section class="admin-panel" id="panel-engineering">
+        <div class="card" style="margin-bottom:22px;">
+          <h3 id="eng-form-title">Add Engineering Project</h3>
+          <form id="eng-form">
+            <input type="hidden" name="id">
+            <input type="hidden" name="version">
+            <div class="grid grid-2">
+              <div class="field"><label>Title *</label><input class="input" name="title" required placeholder="e.g. Hydrogen Reformer"></div>
+              <div class="field"><label>Category *</label>
+                <select class="input select" name="category" required>
+                  <option value="">Select…</option>
+                  <option>Work</option>
+                  <option>Academic</option>
+                </select>
+              </div>
+              <div class="field"><label>Link URL</label><input class="input" name="link" placeholder="/engineering/Hydrogen.html or https://…"></div>
+              <div class="field"><label>Image URL</label><input class="input" name="imageUrl" placeholder="https://… or /assets/images/…"></div>
+              <div class="field"><label>Display Order</label><input class="input" type="number" name="order" placeholder="1, 2, 3…" min="1"></div>
+            </div>
+            <div class="field"><label>Summary</label><textarea class="textarea" name="summary" style="min-height:80px;" placeholder="One or two sentences describing the project."></textarea></div>
+            <div style="display:flex;gap:12px;margin-top:4px;">
+              <button type="submit" class="btn btn-primary">Save Project</button>
+              <button type="button" class="btn btn-outline" id="eng-cancel" style="display:none;">Cancel</button>
+            </div>
+            <p id="eng-msg" style="display:none;margin-top:12px;font-size:.88rem;"></p>
+          </form>
+        </div>
+
+        <h3 class="mb-2">All Engineering Projects</h3>
+        <div id="eng-cf-notice" class="notice warn" style="display:none;margin-bottom:16px;">
+          Contentful not connected — showing read-only static list. <a href="#" onclick="showPanel('setup');return false;" style="font-weight:700;">Connect Contentful →</a>
+        </div>
+        <table class="data-table" id="eng-table">
+          <thead><tr><th>Title</th><th>Category</th><th>Order</th><th></th></tr></thead>
+          <tbody><tr><td colspan="4" style="text-align:center;color:var(--text-muted);padding:24px;">Loading…</td></tr></tbody>
+        </table>
+      </section>
+
+      <!-- ── PERSONAL PROJECTS ─────────────────────────────── -->
+      <section class="admin-panel" id="panel-personal">
+        <div class="card" style="margin-bottom:22px;">
+          <h3 id="per-form-title">Add Personal Project</h3>
+          <form id="per-form">
+            <input type="hidden" name="id">
+            <input type="hidden" name="version">
+            <div class="grid grid-2">
+              <div class="field"><label>Title *</label><input class="input" name="title" required placeholder="e.g. Murphy Bed"></div>
+              <div class="field"><label>Category *</label>
+                <select class="input select" name="category" required>
+                  <option value="">Select…</option>
+                  <option>Personal</option>
+                  <option>Academic</option>
+                  <option>For Friend</option>
+                </select>
+              </div>
+              <div class="field"><label>Link URL</label><input class="input" name="link" placeholder="/personal/MurphyBed.html or https://…"></div>
+              <div class="field"><label>Image URL</label><input class="input" name="imageUrl" placeholder="https://… or /assets/images/…"></div>
+              <div class="field"><label>Display Order</label><input class="input" type="number" name="order" placeholder="1, 2, 3…" min="1"></div>
+            </div>
+            <div class="field"><label>Summary</label><textarea class="textarea" name="summary" style="min-height:80px;" placeholder="One or two sentences describing the project."></textarea></div>
+            <div style="display:flex;gap:12px;margin-top:4px;">
+              <button type="submit" class="btn btn-primary">Save Project</button>
+              <button type="button" class="btn btn-outline" id="per-cancel" style="display:none;">Cancel</button>
+            </div>
+            <p id="per-msg" style="display:none;margin-top:12px;font-size:.88rem;"></p>
+          </form>
+        </div>
+
+        <h3 class="mb-2">All Personal Projects</h3>
+        <div id="per-cf-notice" class="notice warn" style="display:none;margin-bottom:16px;">
+          Contentful not connected. <a href="#" onclick="showPanel('setup');return false;" style="font-weight:700;">Connect Contentful →</a>
+        </div>
+        <table class="data-table" id="per-table">
+          <thead><tr><th>Title</th><th>Category</th><th>Order</th><th></th></tr></thead>
+          <tbody><tr><td colspan="4" style="text-align:center;color:var(--text-muted);padding:24px;">Loading…</td></tr></tbody>
+        </table>
+      </section>
+
+      <!-- ── CONTENTFUL SETUP ──────────────────────────────── -->
+      <section class="admin-panel" id="panel-setup">
+        <div class="card" style="margin-bottom:22px;">
+          <h3>Connect Contentful</h3>
+          <p>Enter your Contentful credentials to enable dynamic project management. These are saved in <code>/js/config.js</code> in your repo.</p>
+
+          <div class="notice info" style="margin-bottom:20px;">
+            <strong>How to get your credentials:</strong><br><br>
+            <strong>Space ID + Delivery Token</strong><br>
+            → <a href="https://app.contentful.com" target="_blank">app.contentful.com</a> → your space → <em>Settings → API Keys</em><br><br>
+            <strong>Management Token</strong> (needed for Seeding)<br>
+            → Click your <strong>avatar (bottom-left)</strong> → <em>Profile Settings</em> → <em>CMA tokens</em> tab → Generate Personal Token<br>
+            ⚠️ This is <em>different</em> from the API Keys page — it's a <strong>Personal Access Token</strong> starting with the same format but granting write access.
+          </div>
+
+          <form id="setup-form">
+            <div class="grid grid-2">
+              <div class="field"><label>Space ID</label><input class="input" id="cf-space" placeholder="a1b2c3d4e5f6"></div>
+              <div class="field"><label>Delivery Token (public read)</label><input class="input" id="cf-delivery" placeholder="Content Delivery API token"></div>
+              <div class="field" style="grid-column:1/-1;">
+                <label>Management Token (admin only — for seeding &amp; CRUD)</label>
+                <div style="display:flex;gap:8px;align-items:center;">
+                  <input class="input" id="cf-mgmt" type="password" placeholder="Personal Access Token from Profile → CMA tokens" style="flex:1;">
+                  <button type="button" id="test-mgmt-btn" class="btn btn-outline btn-sm" style="white-space:nowrap;flex-shrink:0;">Test Token</button>
+                </div>
+                <span id="mgmt-test-result" style="font-size:.8rem;margin-top:4px;display:block;"></span>
+              </div>
+            </div>
+            <button type="submit" class="btn btn-primary" style="margin-top:4px;">Save Credentials</button>
+            <p id="setup-msg" style="display:none;margin-top:12px;font-size:.88rem;"></p>
+          </form>
+        </div>
+
+        <div class="card">
+          <h3>Required Content Types</h3>
+          <p>Create these two content types in Contentful. Use exactly these API identifiers.</p>
+
+          <h4 style="margin-top:24px;margin-bottom:10px;">1. <code>engineeringProject</code></h4>
+          <table class="data-table">
+            <thead><tr><th>Field Name</th><th>API ID</th><th>Type</th><th>Required</th></tr></thead>
+            <tbody>
+              <tr><td>Title</td><td><code>title</code></td><td>Short text</td><td>Yes</td></tr>
+              <tr><td>Category</td><td><code>category</code></td><td>Short text (Work / Academic)</td><td>Yes</td></tr>
+              <tr><td>Summary</td><td><code>summary</code></td><td>Short text</td><td>No</td></tr>
+              <tr><td>Image URL</td><td><code>imageUrl</code></td><td>Short text (URL)</td><td>No</td></tr>
+              <tr><td>Link</td><td><code>link</code></td><td>Short text (URL)</td><td>No</td></tr>
+              <tr><td>Display Order</td><td><code>order</code></td><td>Number (Integer)</td><td>No</td></tr>
+            </tbody>
+          </table>
+
+          <h4 style="margin-top:28px;margin-bottom:10px;">2. <code>personalProject</code></h4>
+          <table class="data-table">
+            <thead><tr><th>Field Name</th><th>API ID</th><th>Type</th><th>Required</th></tr></thead>
+            <tbody>
+              <tr><td>Title</td><td><code>title</code></td><td>Short text</td><td>Yes</td></tr>
+              <tr><td>Category</td><td><code>category</code></td><td>Short text (Personal / Academic / For Friend)</td><td>Yes</td></tr>
+              <tr><td>Summary</td><td><code>summary</code></td><td>Short text</td><td>No</td></tr>
+              <tr><td>Image URL</td><td><code>imageUrl</code></td><td>Short text (URL)</td><td>No</td></tr>
+              <tr><td>Link</td><td><code>link</code></td><td>Short text (URL)</td><td>No</td></tr>
+              <tr><td>Display Order</td><td><code>order</code></td><td>Number (Integer)</td><td>No</td></tr>
+            </tbody>
+          </table>
+
+          <div class="notice info" style="margin-top:20px;">
+            <strong>Tip:</strong> After creating the content types and adding credentials above, save and the project pages will load live data from Contentful. No rebuild needed!
+          </div>
+        </div>
+
+        <!-- SEED DATA CARD -->
+        <div class="card" style="margin-top:22px;">
+          <h3>Seed Projects into Contentful</h3>
+          <p>Once your credentials are saved and content types are created, click below to automatically populate Contentful with all your existing projects. This creates the content types (if they don't exist) and adds all project entries in one go.</p>
+
+          <div class="notice warn" style="margin-bottom:20px;">
+            <strong>Requirements:</strong> You must have a <strong>Management Token</strong> saved above before seeding. The seed is safe to re-run — it skips projects that already exist.
+          </div>
+
+          <div id="seed-progress" style="display:none;margin-bottom:16px;">
+            <div style="background:var(--bg-main);border:1px solid var(--line-soft);border-radius:var(--radius-sm);padding:16px;font-size:.85rem;font-family:monospace;max-height:240px;overflow-y:auto;" id="seed-log"></div>
+          </div>
+
+          <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:center;">
+            <button id="seed-btn" class="btn btn-primary" type="button">🌱 Seed All Projects</button>
+            <span id="seed-status" style="font-size:.88rem;color:var(--text-muted);"></span>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <script src="/js/config.js"></script>
+  <script src="/js/contentful.js"></script>
+  <script>
+  /* ================================================================
+     ADMIN PORTAL — Auth + CRUD
+  ================================================================ */
+  const ADMIN_EMAIL    = "quintindejongh@gmail.com";
+  const ADMIN_PASSWORD = "arsenal";
+  const SESSION_KEY    = "qdj_admin_session";
+
+  /* ── Auth ──────────────────────────────────────────────────── */
+  function isLoggedIn() {
+    return sessionStorage.getItem(SESSION_KEY) === "1";
+  }
+  function login(email, password) {
+    return email.trim().toLowerCase() === ADMIN_EMAIL && password === ADMIN_PASSWORD;
+  }
+  function doLogin()  { sessionStorage.setItem(SESSION_KEY, "1"); showShell(); }
+  function doLogout() { sessionStorage.removeItem(SESSION_KEY); showLoginScreen(); }
+
+  function showShell() {
+    document.getElementById("login-screen").style.display = "none";
+    document.getElementById("admin-shell").style.display  = "grid";
+    document.getElementById("admin-email-display").textContent = ADMIN_EMAIL;
+    initShell();
+  }
+  function showLoginScreen() {
+    document.getElementById("admin-shell").style.display  = "none";
+    document.getElementById("login-screen").style.display = "flex";
+  }
+
+  document.getElementById("login-form").addEventListener("submit", e => {
+    e.preventDefault();
+    const email = document.getElementById("login-email").value;
+    const pass  = document.getElementById("login-password").value;
+    if (login(email, pass)) { doLogin(); }
+    else {
+      const err = document.getElementById("login-error");
+      err.style.display = "block";
+      setTimeout(() => err.style.display = "none", 3000);
+    }
+  });
+  document.getElementById("logout-btn").addEventListener("click", doLogout);
+
+  /* ── Panel navigation ──────────────────────────────────────── */
+  const PANELS = {
+    dashboard:   { title: "Dashboard",           subtitle: "Overview and quick stats." },
+    engineering: { title: "Engineering Projects", subtitle: "Add, edit or remove engineering portfolio cards." },
+    personal:    { title: "Personal Projects",    subtitle: "Manage personal, academic and friend projects." },
+    setup:       { title: "Contentful Setup",     subtitle: "Connect your CMS to enable dynamic project management." },
+  };
+
+  function showPanel(name) {
+    document.querySelectorAll(".admin-panel").forEach(p => p.classList.remove("active"));
+    document.querySelectorAll(".admin-sidebar nav a").forEach(a => a.classList.remove("active"));
+    document.getElementById("panel-" + name)?.classList.add("active");
+    document.querySelector(`[data-panel="${name}"]`)?.classList.add("active");
+    const info = PANELS[name] || {};
+    document.getElementById("panel-title").textContent    = info.title || name;
+    document.getElementById("panel-subtitle").textContent = info.subtitle || "";
+    closeSidebar();
+  }
+
+  function closeSidebar() {
+    document.getElementById("admin-sidebar")?.classList.remove("open");
+    document.getElementById("admin-sidebar-backdrop")?.classList.remove("open");
+    document.body.style.overflow = "";
+  }
+
+  /* ── Contentful helpers ──────────────────────────────────── */
+  function cfConfigured() {
+    const cfg = (window.QDJ_CONFIG || {}).contentful || {};
+    return !!(cfg.spaceId && cfg.deliveryToken);
+  }
+  function mgmtToken() {
+    return (window.QDJ_CONFIG || {}).contentful?.managementToken || "";
+  }
+
+  function localeField(val) { return { "en-US": val }; }
+
+  async function saveProject(contentType, formEl, msgEl) {
+    const data = Object.fromEntries(new FormData(formEl));
+    if (!data.title?.trim()) { showMsg(msgEl, "Title is required.", "error"); return; }
+
+    if (!cfConfigured() || !mgmtToken()) {
+      showMsg(msgEl, "Contentful not configured. Go to Setup to add credentials.", "error");
+      return;
+    }
+
+    const cf = window.QDJ_cf;
+    const fields = {
+      title:    localeField(data.title),
+      category: localeField(data.category),
+      summary:  localeField(data.summary || ""),
+      imageUrl: localeField(data.imageUrl || ""),
+      link:     localeField(data.link || ""),
+      order:    localeField(parseInt(data.order) || 99),
+    };
+
+    try {
+      let entry;
+      if (data.id) {
+        entry = await cf.updateEntry(data.id, parseInt(data.version), fields, mgmtToken());
+      } else {
+        entry = await cf.createEntry(contentType, fields, mgmtToken());
+      }
+      await cf.publishEntry(entry.sys.id, entry.sys.version, mgmtToken());
+      showMsg(msgEl, "Project saved and published!", "success");
+      formEl.reset();
+      formEl.querySelector('[name="id"]').value = "";
+      formEl.querySelector('[name="version"]').value = "";
+      if (contentType === "engineeringProject") loadEngTable();
+      else loadPerTable();
+    } catch (err) {
+      showMsg(msgEl, "Error: " + err.message, "error");
+    }
+  }
+
+  async function deleteProject(entryId, contentType) {
+    if (!confirm("Delete this project?")) return;
+    try {
+      await window.QDJ_cf.deleteEntry(entryId, mgmtToken());
+      if (contentType === "engineeringProject") loadEngTable();
+      else loadPerTable();
+    } catch (err) { alert("Delete failed: " + err.message); }
+  }
+
+  function editProject(item, formPrefix, formTitle) {
+    const form = document.getElementById(formPrefix + "-form");
+    form.querySelector('[name="id"]').value      = item.sys?.id || "";
+    form.querySelector('[name="version"]').value = item.sys?.version || "";
+    const f = item.fields || {};
+    form.querySelector('[name="title"]').value    = f.title?.["en-US"] || f.title || "";
+    form.querySelector('[name="category"]').value = f.category?.["en-US"] || f.category || "";
+    form.querySelector('[name="summary"]').value  = f.summary?.["en-US"] || f.summary || "";
+    form.querySelector('[name="imageUrl"]').value = f.imageUrl?.["en-US"] || f.imageUrl || "";
+    form.querySelector('[name="link"]').value     = f.link?.["en-US"] || f.link || "";
+    form.querySelector('[name="order"]').value    = f.order?.["en-US"] || f.order || "";
+    document.getElementById(formPrefix + "-form-title").textContent = "Edit Project";
+    document.getElementById(formPrefix + "-cancel").style.display = "inline-flex";
+    form.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+
+  function renderProjectTable(tableId, items, contentType, formPrefix) {
+    const tbody = document.querySelector("#" + tableId + " tbody");
+    if (!items.length) {
+      tbody.innerHTML = `<tr><td colspan="4" style="text-align:center;color:var(--text-muted);padding:24px;">No projects yet. Add one above.</td></tr>`;
+      return;
+    }
+    tbody.innerHTML = items.map(item => {
+      const f   = item.fields || {};
+      const t   = f.title?.["en-US"] || f.title || "—";
+      const cat = f.category?.["en-US"] || f.category || "—";
+      const ord = f.order?.["en-US"] || f.order || "—";
+      const id  = item.sys?.id || "";
+      return `<tr>
+        <td><strong>${t}</strong></td>
+        <td>${cat}</td>
+        <td>${ord}</td>
+        <td>
+          <button onclick="editProject(${JSON.stringify(JSON.stringify(item))}, '${formPrefix}')">Edit</button>
+          <button class="danger" onclick="deleteProject('${id}','${contentType}')">Delete</button>
+        </td>
+      </tr>`;
+    }).join("");
+  }
+
+  // Workaround for inline onclick with complex objects
+  window._editItems = {};
+  function renderProjectTableSafe(tableId, items, contentType, formPrefix) {
+    const tbody = document.querySelector("#" + tableId + " tbody");
+    if (!items.length) {
+      tbody.innerHTML = `<tr><td colspan="4" style="text-align:center;color:var(--text-muted);padding:24px;">No projects yet. Add one above.</td></tr>`;
+      return;
+    }
+    items.forEach((item, i) => { window._editItems[tableId + "_" + i] = item; });
+    tbody.innerHTML = items.map((item, i) => {
+      const f   = item.fields || {};
+      const t   = f.title?.["en-US"] || f.title || "—";
+      const cat = f.category?.["en-US"] || f.category || "—";
+      const ord = f.order?.["en-US"] || f.order || "—";
+      const id  = item.sys?.id || "";
+      return `<tr>
+        <td><strong>${t}</strong></td>
+        <td>${cat}</td>
+        <td>${ord}</td>
+        <td>
+          <button onclick="editProject(window._editItems['${tableId}_${i}'], '${formPrefix}')">Edit</button>
+          ${cfConfigured() && mgmtToken() ? `<button class="danger" onclick="deleteProject('${id}','${contentType}')">Delete</button>` : ""}
+        </td>
+      </tr>`;
+    }).join("");
+  }
+
+  async function loadEngTable() {
+    const cf = window.QDJ_cf;
+    if (!cfConfigured()) {
+      document.getElementById("eng-cf-notice").style.display = "block";
+      // Show static fallback read-only
+      const STATIC = [
+        { fields: { title:"Hydrogen Reformer", category:"Work", order:1 }, sys:{} },
+        { fields: { title:"DCMD Desalination", category:"Work", order:2 }, sys:{} },
+        { fields: { title:"Custom Bracket Hook", category:"Work", order:3 }, sys:{} },
+        { fields: { title:"Crate Structural Analysis", category:"Work", order:4 }, sys:{} },
+        { fields: { title:"Flexolap Polisher", category:"Academic", order:5 }, sys:{} },
+        { fields: { title:"Vehicle Polisher", category:"Academic", order:6 }, sys:{} },
+      ];
+      renderProjectTableSafe("eng-table", STATIC, "engineeringProject", "eng");
+      document.getElementById("stat-eng").textContent = STATIC.length;
+      return;
+    }
+    try {
+      const res = await cf.getEntries("engineeringProject", { order: "fields.order" });
+      renderProjectTableSafe("eng-table", res.items || [], "engineeringProject", "eng");
+      document.getElementById("stat-eng").textContent = (res.items || []).length;
+    } catch (e) { console.warn(e); }
+  }
+
+  async function loadPerTable() {
+    const cf = window.QDJ_cf;
+    if (!cfConfigured()) {
+      document.getElementById("per-cf-notice").style.display = "block";
+      const STATIC = [
+        { fields: { title:"3D Printing", category:"Personal", order:1 }, sys:{} },
+        { fields: { title:"Zero G", category:"Personal", order:2 }, sys:{} },
+        { fields: { title:"Benches", category:"Personal", order:3 }, sys:{} },
+        { fields: { title:"Murphy Bed", category:"Personal", order:4 }, sys:{} },
+        { fields: { title:"Outdoor Couches", category:"Personal", order:5 }, sys:{} },
+        { fields: { title:"Art Display Shelving", category:"For Friend", order:6 }, sys:{} },
+        { fields: { title:"IGS", category:"Academic", order:7 }, sys:{} },
+      ];
+      renderProjectTableSafe("per-table", STATIC, "personalProject", "per");
+      document.getElementById("stat-per").textContent = STATIC.length;
+      return;
+    }
+    try {
+      const res = await cf.getEntries("personalProject", { order: "fields.order" });
+      renderProjectTableSafe("per-table", res.items || [], "personalProject", "per");
+      document.getElementById("stat-per").textContent = (res.items || []).length;
+    } catch (e) { console.warn(e); }
+  }
+
+  function showMsg(el, msg, type) {
+    el.textContent = msg;
+    el.className = "notice " + type;
+    el.style.display = "block";
+    setTimeout(() => el.style.display = "none", 5000);
+  }
+
+  /* ── Init shell ─────────────────────────────────────────── */
+  function initShell() {
+    // Panel nav
+    document.querySelectorAll(".admin-sidebar nav a").forEach(a => {
+      a.addEventListener("click", () => showPanel(a.dataset.panel));
+    });
+
+    // Mobile sidebar
+    document.getElementById("admin-hamburger")?.addEventListener("click", () => {
+      document.getElementById("admin-sidebar").classList.add("open");
+      document.getElementById("admin-sidebar-backdrop").classList.add("open");
+      document.body.style.overflow = "hidden";
+      document.getElementById("admin-sidebar-close").style.display = "block";
+    });
+    document.getElementById("admin-sidebar-backdrop")?.addEventListener("click", closeSidebar);
+    document.getElementById("admin-sidebar-close")?.addEventListener("click", closeSidebar);
+
+    // CF status badge
+    if (cfConfigured()) {
+      document.getElementById("dashboard-cf-status").className = "notice success";
+      document.getElementById("dashboard-cf-status").textContent = "✓ Contentful is connected. Projects load dynamically.";
+      document.getElementById("stat-cf").textContent = "✓";
+    } else {
+      document.getElementById("stat-cf").textContent = "✗";
+    }
+
+    // Load tables
+    loadEngTable();
+    loadPerTable();
+
+    // Engineering form
+    const engForm = document.getElementById("eng-form");
+    engForm.addEventListener("submit", e => { e.preventDefault(); saveProject("engineeringProject", engForm, document.getElementById("eng-msg")); });
+    document.getElementById("eng-cancel")?.addEventListener("click", () => {
+      engForm.reset();
+      engForm.querySelector('[name="id"]').value = "";
+      document.getElementById("eng-form-title").textContent = "Add Engineering Project";
+      document.getElementById("eng-cancel").style.display = "none";
+    });
+
+    // Personal form
+    const perForm = document.getElementById("per-form");
+    perForm.addEventListener("submit", e => { e.preventDefault(); saveProject("personalProject", perForm, document.getElementById("per-msg")); });
+    document.getElementById("per-cancel")?.addEventListener("click", () => {
+      perForm.reset();
+      perForm.querySelector('[name="id"]').value = "";
+      document.getElementById("per-form-title").textContent = "Add Personal Project";
+      document.getElementById("per-cancel").style.display = "none";
+    });
+
+    // Setup form
+    document.getElementById("setup-form").addEventListener("submit", e => {
+      e.preventDefault();
+      const spaceId  = document.getElementById("cf-space").value.trim();
+      const delivery = document.getElementById("cf-delivery").value.trim();
+      const mgmt     = document.getElementById("cf-mgmt").value.trim();
+      const msg = document.getElementById("setup-msg");
+      if (!spaceId || !delivery) { showMsg(msg, "Space ID and Delivery Token are required.", "error"); return; }
+      // Update runtime config
+      window.QDJ_CONFIG.contentful.spaceId        = spaceId;
+      window.QDJ_CONFIG.contentful.deliveryToken  = delivery;
+      window.QDJ_CONFIG.contentful.managementToken = mgmt;
+      showMsg(msg,
+        "Credentials saved for this session. To persist them, update /js/config.js in your repository with these values.",
+        "success"
+      );
+      document.getElementById("dashboard-cf-status").className   = "notice success";
+      document.getElementById("dashboard-cf-status").textContent = "✓ Contentful connected (session only). Update config.js to make it permanent.";
+      document.getElementById("stat-cf").textContent = "✓";
+      loadEngTable();
+      loadPerTable();
+    });
+
+    // Pre-fill setup form with existing config
+    const cfg = (window.QDJ_CONFIG || {}).contentful || {};
+    if (cfg.spaceId)         document.getElementById("cf-space").value    = cfg.spaceId;
+    if (cfg.deliveryToken)   document.getElementById("cf-delivery").value = cfg.deliveryToken;
+    if (cfg.managementToken) document.getElementById("cf-mgmt").value     = cfg.managementToken;
+  }
+
+  /* editProject exposed globally (called from table rows) */
+  window.editProject   = editProject;
+  window.deleteProject = deleteProject;
+  window.showPanel     = showPanel;
+
+  /* ================================================================
+     SEED PROJECTS INTO CONTENTFUL
+     Creates content types + all project entries via the Management API.
+  ================================================================ */
+
+  const SEED_ENG = [
+    { title: "Hydrogen Reformer System",       category: "Work",     summary: "Lead engineer on a complete hydrogen steam methane reformer — CAD, FEA, commissioning and control.",                   imageUrl: "/assets/images/ReformerTubes.jpg",  link: "/engineering/Hydrogen.html",   order: 1 },
+    { title: "DCMD Desalination",               category: "Work",     summary: "Direct Contact Membrane Distillation product design and development from concept to prototype.",                         imageUrl: "/assets/images/DCMDModule.png",     link: "/engineering/DCMD.html",       order: 2 },
+    { title: "Flexolap Polisher",               category: "Academic", summary: "MSc thesis — a machine to mechanically polish Ti-6Al-4V components to a mirror finish.",                               imageUrl: "/assets/images/flexolap.png",       link: "/engineering/Flexolap.html",   order: 3 },
+    { title: "Yaw, Roll & Telescopic Bracket",  category: "Work",     summary: "Custom multi-axis bracket system with M8/M12 locking bolts, stress analysis and prototyping.",                         imageUrl: "/assets/images/BracketA.jpeg",      link: "/engineering/Bracket.html",    order: 4 },
+    { title: "Fruit Crate FEA & CFD",           category: "Work",     summary: "In-depth structural analysis and CFD of a moulded fruit packing crate for a South African plastics company.",          imageUrl: "/assets/images/Agr2.jpg",           link: "/engineering/FruitCrate.html", order: 5 },
+    { title: "Vehicle Polisher",                category: "Academic", summary: "Final year product design — a compact vehicle polisher with bevel gears and ergonomic frame designed in SolidWorks.",   imageUrl: "/assets/images/op2.PNG",           link: "/engineering/polish.html",     order: 6 },
+  ];
+
+  const SEED_PER = [
+    { title: "ZeroG",                category: "Personal",    summary: "Modular wearable tattoo accessory holder — snap-fit design, 3D printed prototypes, and custom branding.",       imageUrl: "/assets/images/zg2.PNG",           link: "/engineering/ZeroG.html",      order: 1 },
+    { title: "Intelligent Grinding System", category: "Academic", summary: "MATLAB app with real-time DAQ integration to optimise grinding process parameters.",                          imageUrl: "/assets/images/Step8b.PNG",        link: "/engineering/IGS.html",        order: 2 },
+    { title: "3D Printing",          category: "Personal",    summary: "FDM printing projects from research components and miniatures to home organisation accessories.",                  imageUrl: "/assets/images/tripodc.jpg",       link: "/personal/3DPrint.html",       order: 3 },
+    { title: "Benches",              category: "Personal",    summary: "Handcrafted home benches — woodworking, joinery, and clean aesthetics.",                                          imageUrl: "/assets/images/Benches.jpeg",      link: "/personal/Benches.html",       order: 4 },
+    { title: "Murphy Bed",           category: "Personal",    summary: "Space-saving wall fold-down Murphy bed — structural design and smooth folding mechanism.",                        imageUrl: "/assets/images/MurphyBed.jpeg",    link: "/personal/MurphyBed.html",     order: 5 },
+    { title: "Outdoor Couches",      category: "Personal",    summary: "Outdoor couch set built from treated timber — designed for durability, ergonomics, and outdoor conditions.",     imageUrl: "/assets/images/Couch.jpeg",        link: "/personal/Couches.html",       order: 6 },
+    { title: "Art Display Shelving", category: "For Friend",  summary: "Blackened sheet steel display shelves for Dream Press — designed for sheet metal bending and easy installation.", imageUrl: "/assets/images/shelving.jpg",      link: "/personal/artdisplay.html",    order: 7 },
+  ];
+
+  /* ── Contentful Management API helpers ──────────────────────── */
+  function cfMgmtBase() {
+    const cfg = (window.QDJ_CONFIG || {}).contentful || {};
+    return `https://api.contentful.com/spaces/${cfg.spaceId}/environments/${cfg.environment || "master"}`;
+  }
+  function cfMgmtHeaders() {
+    const cfg = (window.QDJ_CONFIG || {}).contentful || {};
+    return {
+      "Authorization": `Bearer ${cfg.managementToken}`,
+      "Content-Type": "application/json",
+    };
+  }
+
+  async function ensureContentType(ctId, ctName, fields) {
+    const base = cfMgmtBase();
+    // Check if it already exists
+    const checkRes = await fetch(`${base}/content_types/${ctId}`, { headers: cfMgmtHeaders() });
+    if (checkRes.ok) {
+      // It exists — make sure it's published by checking its activated status
+      const existing = await checkRes.json();
+      const ver = existing.sys.version;
+      // Attempt to publish (idempotent — safe even if already published)
+      await fetch(`${base}/content_types/${ctId}/published`, {
+        method: "PUT",
+        headers: { ...cfMgmtHeaders(), "X-Contentful-Version": `${ver}` },
+      });
+      return `↳ Content type '${ctId}' already exists — ensured published.`;
+    }
+    if (checkRes.status === 401) {
+      const e = await checkRes.json();
+      throw new Error(`Management token rejected (401). Make sure you're using a Content Management API token (not a Delivery token). Details: ${e.message}`);
+    }
+    // Create via PUT (Contentful requires PUT with the desired ID)
+    const body = { name: ctName, displayField: "title", fields };
+    const createRes = await fetch(`${base}/content_types/${ctId}`, {
+      method: "PUT",
+      headers: cfMgmtHeaders(),
+      body: JSON.stringify(body),
+    });
+    if (!createRes.ok) {
+      const e = await createRes.json().catch(() => ({}));
+      throw new Error(`Create CT '${ctId}' failed (${createRes.status}): ${e.message || createRes.statusText}`);
+    }
+    const ct = await createRes.json();
+    // Publish the content type
+    const pubRes = await fetch(`${base}/content_types/${ctId}/published`, {
+      method: "PUT",
+      headers: { ...cfMgmtHeaders(), "X-Contentful-Version": `${ct.sys.version}` },
+    });
+    if (!pubRes.ok) {
+      const e = await pubRes.json().catch(() => ({}));
+      throw new Error(`Publish CT '${ctId}' failed (${pubRes.status}): ${e.message || pubRes.statusText}`);
+    }
+    return `✓ Content type '${ctId}' created and published.`;
+  }
+
+  async function seedEntry(ctId, fields) {
+    const base = cfMgmtBase();
+    // Build entry body
+    const entryFields = {};
+    for (const [k, v] of Object.entries(fields)) {
+      entryFields[k] = { "en-US": v };
+    }
+    const createRes = await fetch(`${base}/entries`, {
+      method: "POST",
+      headers: { ...cfMgmtHeaders(), "X-Contentful-Content-Type": ctId },
+      body: JSON.stringify({ fields: entryFields }),
+    });
+    if (!createRes.ok) { const e = await createRes.json(); throw new Error(`Create entry failed: ${e.message}`); }
+    const entry = await createRes.json();
+    // Publish
+    const pubRes = await fetch(`${base}/entries/${entry.sys.id}/published`, {
+      method: "PUT",
+      headers: { ...cfMgmtHeaders(), "X-Contentful-Version": `${entry.sys.version}` },
+    });
+    if (!pubRes.ok) { const e = await pubRes.json(); throw new Error(`Publish entry '${fields.title}' failed: ${e.message}`); }
+    return `✓ Published: ${fields.title}`;
+  }
+
+  const CT_FIELDS = [
+    { id: "title",    name: "Title",         type: "Symbol", required: true },
+    { id: "category", name: "Category",      type: "Symbol" },
+    { id: "summary",  name: "Summary",       type: "Symbol" },
+    { id: "imageUrl", name: "Image URL",     type: "Symbol" },
+    { id: "link",     name: "Link",          type: "Symbol" },
+    { id: "order",    name: "Display Order", type: "Integer" },
+  ];
+
+  /* ── Test Management Token ───────────────────────────────── */
+  async function testManagementToken() {
+    const spaceId = document.getElementById("cf-space").value.trim()
+                 || ((window.QDJ_CONFIG || {}).contentful || {}).spaceId;
+    const token   = document.getElementById("cf-mgmt").value.trim();
+    const result  = document.getElementById("mgmt-test-result");
+    const btn     = document.getElementById("test-mgmt-btn");
+
+    if (!token) { result.style.color = "#EF4444"; result.textContent = "⚠ Enter a token first."; return; }
+    if (!spaceId) { result.style.color = "#EF4444"; result.textContent = "⚠ Enter or save your Space ID first."; return; }
+
+    btn.disabled = true; btn.textContent = "Testing…";
+    result.textContent = "";
+
+    try {
+      const res = await fetch(
+        `https://api.contentful.com/spaces/${spaceId}`,
+        { headers: { "Authorization": `Bearer ${token}` } }
+      );
+      if (res.ok) {
+        const data = await res.json();
+        result.style.color = "#16A34A";
+        result.textContent = `✓ Token valid — connected to space "${data.name}"`;
+      } else {
+        const e = await res.json().catch(() => ({}));
+        result.style.color = "#EF4444";
+        if (res.status === 401) {
+          result.textContent = "✗ Token rejected (401 Unauthorized). This must be a Personal Access Token from Profile → CMA tokens, not a Delivery/Preview token.";
+        } else {
+          result.textContent = `✗ Error ${res.status}: ${e.message || res.statusText}`;
+        }
+      }
+    } catch (err) {
+      result.style.color = "#EF4444";
+      result.textContent = "✗ Network error: " + err.message;
+    }
+    btn.disabled = false; btn.textContent = "Test Token";
+  }
+
+  async function runSeed() {
+    const cfg = (window.QDJ_CONFIG || {}).contentful || {};
+    const logEl    = document.getElementById("seed-log");
+    const statusEl = document.getElementById("seed-status");
+    const btn      = document.getElementById("seed-btn");
+
+    if (!cfg.managementToken) {
+      alert("Please save a Management Token in the credentials form above before seeding.");
+      return;
+    }
+    if (!cfg.spaceId) {
+      alert("Please save your Space ID in the credentials form above before seeding.");
+      return;
+    }
+
+    btn.disabled = true;
+    btn.textContent = "⏳ Seeding…";
+    document.getElementById("seed-progress").style.display = "block";
+    logEl.innerHTML = "";
+    statusEl.textContent = "";
+
+    function log(msg, isError) {
+      const line = document.createElement("div");
+      line.style.cssText = `padding:2px 0;color:${isError ? "#EF4444" : "#22C55E"};`;
+      line.textContent = msg;
+      logEl.appendChild(line);
+      logEl.scrollTop = logEl.scrollHeight;
+    }
+
+    try {
+      log("── Creating content types ──────────────────────");
+      log(await ensureContentType("engineeringProject", "Engineering Project", CT_FIELDS));
+      log(await ensureContentType("personalProject",    "Personal Project",    CT_FIELDS));
+
+      log("── Seeding engineering projects ────────────────");
+      for (const p of SEED_ENG) { log(await seedEntry("engineeringProject", p)); }
+
+      log("── Seeding personal projects ───────────────────");
+      for (const p of SEED_PER) { log(await seedEntry("personalProject", p)); }
+
+      log("────────────────────────────────────────────────");
+      log("✅ All done! Reload the Engineering / Personal pages to see live data.");
+      statusEl.textContent = "✅ Seed complete";
+      btn.textContent = "✓ Done";
+    } catch (err) {
+      log("❌ " + err.message, true);
+      statusEl.textContent = "❌ Seed failed — see log";
+      btn.disabled = false;
+      btn.textContent = "🌱 Retry Seed";
+    }
+  }
+
+  /* ── Boot ────────────────────────────────────────────────── */
+  document.addEventListener("DOMContentLoaded", () => {
+    if (isLoggedIn()) { showShell(); }
+    document.getElementById("seed-btn")?.addEventListener("click", runSeed);
+    document.getElementById("test-mgmt-btn")?.addEventListener("click", testManagementToken);
+  });
+  </script>
+</body>
+</html>
